@@ -1,0 +1,433 @@
+<!DOCTYPE html> <!-- Fortæller browseren: "dette er et HTML dokument" -->
+<html lang="en"> <!-- Starter hele siden — lang="en" siger sproget er engelsk -->
+
+  <head> <!-- Alt herinde er usynligt for brugeren — opsætning og regler -->
+    <meta charset="UTF-8"> <!-- Tillader æ ø å og andre specialtegn -->
+    <title>Reflectionjourney</title> <!-- Det der vises i browserens fane øverst -->
+
+  <style> /* Her begynder CSS — vi skifter sprog fra HTML til CSS, CSS hjælper os med at style siden */
+      body {
+      background: #f0e6f0; /* sætter baggrundsfarve */
+      font-family: Georgia, serif; /* sætter skrifttype */
+      display: flex; /* sætter layout til "flexbox" — gør det nemt at centrere indholdet */
+      justify-content: center; /* centrer vandret */
+      align-items: center; /* centrer lodret */
+      min-height: 100vh; /* giv siden en mindste-højde på hele skærmhøjden */
+      } /*body-blokken slutter her */
+
+    .telefon { /* punktum foran = "find alt med class='telefon'" .navn = find class */
+      background: #1a1a1a;  /* mørk baggrund — næsten sort */
+      width: 320px;         /* bredde — ca. som en mobilskærm */
+      border-radius: 40px;  /* runde hjørner — jo højere tal, jo rundere */
+      padding: 12px;        /* luft mellem kanten og indholdet indeni */
+      min-height: 560px;    /* NY: giv boksen en mindste-højde */
+      } /* telefon-blokken slutter her */
+
+    .skaerm {           /* tilføjes her — efter .telefon */
+      background: rgb(255, 255, 255); /* hvid baggrund */
+      border-radius: 30px; /* runde hjørner — lidt mindre end telefonen for at skabe en "skærm" effekt */
+      overflow: hidden;   /* skjuler indhold, der overskrider boksen */
+      min-height: 560px; /* NY: giv skærmen samme mindste-højde som telefonen for at sikre den fylder hele pladsen */
+      width: 100%;     /* NY: lad skærmen fylde hele bredden af telefonen, så den automatisk tilpasser sig telefonens bredde */
+      }
+
+    .top-del {
+      background: #1C1A3A;  /* mørk lilla — næsten sort */
+      padding: 24px 20px;   /* luft indeni — 24px top/bund, 20px venstre/højre */
+      display: flex;          /* gør jeg kan rykke rundt på elementer */
+      flex-direction: column; /* NY: stable elementer lodret */
+      align-items: center;    /* NY: centrer vandret */
+      }
+
+    .bund-del {
+      background: #faf9f7;  /* næsten hvid */
+      padding: 20px;        /* luft indeni */
+      display: flex;          /* NY: tænd for arrangøren */
+      flex-direction: column; /* NY: stable elementer lodret */
+      min-height: 400px;      /* NY: giv den noget højde at arbejde med */
+    }
+
+    .notifikation {
+      background: rgba(255,255,255,0.10); /* gennemsigtig hvid baggrund */
+      border-radius: 10px;                /* runde hjørner */
+      padding: 9px 12px;                  /* luft indeni */
+      display: flex;                      /* placer klokke og tekst side om side */
+      align-items: center;                /* centrer dem lodret */
+      gap: 10px;                          /* afstand mellem klokke og tekst */
+      width: 100%;                        /* fyld hele bredden */
+      }
+
+      .notifikation p {
+      color: white; /* hvid tekst */
+      margin: 0;    /* fjern automatisk afstand */
+      }
+
+    .dag-numre {
+      display: flex;                    /* side om side */
+      justify-content: space-between;   /* jævn fordeling */
+      width: 100%;                      /* fyld hele bredden */
+      margin-top: 8px;                  /* lidt luft over */
+      box-sizing: border-box;           /* inkluder padding i bredden */
+      padding: 0 4px;                    /* lidt luft på siderne */
+      } 
+
+    .dag-numre span {
+      color: rgba(255,255,255,0.45); /* hvid men kun 0.45 % synlig */
+      font-size: 12px;               /* tekst størrelse */
+      text-align: center;  /* centrer tallet indeni */
+      flex: 1;             /* giv hver span samme bredde */
+      }
+
+    .striber { /* styler beholderen for striberne */
+      display: flex;
+      gap: 5px;        /* afstand mellem striberne */
+      width: 100%;
+      margin-top: 3px; /* tæt på tallene */
+      }
+
+    .stribe { /* styler hver enkelte stribe */
+      flex: 1;                          /* lige bred */
+      height: 4px;                      /* tynd streg */
+      border-radius: 3px;               /* runde ender */
+      background: rgba(255,255,255,0.2); /* usynlig — fremtidige dage */
+      }
+
+    .stribe.aktiv { background: #7F77DD; } /* lilla — gennemført */
+    .stribe.idag  { background: #fff; }    /* hvid — i dag */
+    
+    .ugle {
+      font-size: 40px;   /* stor ugle */
+      text-align: center; /* centrer den */
+      margin: 0;          /* fjern automatisk afstand */
+      }
+
+    .ugle-rad {
+      display: flex;        /* side om side */
+      align-items: center;  /* centrer lodret */
+      justify-content: center; /* centrer vandret */
+      gap: 10px;            /* afstand mellem dem */
+      width: 100%;
+      }
+
+    .ugle-rad img {
+      width: 50px;  /* søjlens bredde */
+      }
+    
+    .sojle {
+      font-size: 80px; /* størrelse på templet */
+      }
+
+    .knap {
+      margin-top: auto; /* skub knappen ned mod bunden */
+      background: #534AB7;  /* lilla baggrund */
+      color: #EEEDFE;        /* lys tekst */
+      border: none;          /* fjern browserens standard-kant */
+      border-radius: 12px;   /* runde hjørner */
+      padding: 14px;         /* luft indeni */
+      font-size: 15px;       /* tekststørrelse */
+      width: 100%;           /* fyld hele bredden */
+      }
+
+    .dag-info {
+      text-align: center; /* centrer teksten */
+      margin-top: 12px;   /* luft over */
+      }
+
+    .dag-info p {
+      margin: 0;          /* fjern automatisk afstand */
+      color: #888780;     /* grå tekst */
+      font-size: 13px;    /* lille tekst */
+      }
+
+    .side2 {
+      display: none; /* skjult som standard */
+      color: white;
+      border-radius: 30px;  /* runde hjørner som .skaerm */
+      overflow: hidden;     /* klip indhold der stikker ud */
+      min-height: 560px;    /* samme højde som side 1 */
+      width: 100%; 
+      }
+    
+      textarea {
+      width: 100%;        /* fyld hele bredden */
+      height: 200px;      /* højden — prøv at ændre tallet */
+      box-sizing: border-box; /* padding tæller med i bredden - uden den ville tekstfeltet stikke ud over telefonens kanter fordi padding lægges ovenpå width: 100% */
+     }
+
+    .ild{
+      font-size: 40px;
+        }
+
+    #side5 .bund-del { /* undtagelse: Find bund-del der sider inde i #side5 og gør teksten sort */
+      color: black; /* kun tekst i bund-del på side 5 */
+      }
+
+    .citat {
+      font-style: italic; /* kursiv tekst */
+      color: #5F5E5A;     /* grå farve */
+      }
+
+      .card {
+      background: white;
+      border-radius: 8px;
+      padding: 10px 12px;
+      border-left: 3px solid #534AB7;
+      margin-bottom: 8px;
+      }
+
+    .q {
+      font-size: 11px;
+      color: #888780;
+      margin: 0 0 4px;
+      }
+
+    .a {
+      font-size: 13px;
+      color: #2C2C2A;
+      font-style: italic;
+      margin: 0;
+      }
+
+#side5 .bund-del {
+  overflow-y: scroll;
+  max-height: 350px;
+}
+</style> <!-- Her slutter CSS — vi er tilbage i HTML -->
+
+  </head> <!-- head-sektionen slutter her -->
+
+ 
+  <body> <!-- Alt herinde vises på siden -->
+
+<div class="telefon"> <!-- en usynlig boks med navnet "telefon", class = navngivning - div er en usynlig boks står for: division -->
+      
+    <div class="skaerm" id="side1"> <!--id er identifikation -->
+      <div class="top-del"> <!-- NY: mørk top -->
+        <div class="notifikation"> <!-- notifikations-boks -->
+          <span>🔔</span>          <!-- span tager kun den plads det tildeles: klokke — fylder kun ikonets plads -->
+          <div>                    <!-- tekstboks ved siden af klokken -->
+            <p>Husk at reflektere i dag</p>
+            <p>Din streak er i fare</p>
+          </div>
+        </div> <!-- lukker notifikation -->
+        <!-- Dag-numre -->
+        <div class="dag-numre">
+          <span>1</span>
+          <span>2</span>
+          <span>3</span>
+          <span>4</span>
+          <span>5</span>
+          <span>6</span>
+          <span>7</span>
+        </div>
+        <!-- Streak-striber -->
+        <div class="striber">
+          <div class="stribe aktiv"></div>  <!-- gennemført dag -->
+          <div class="stribe aktiv"></div>  <!-- gennemført dag -->
+          <div class="stribe idag"></div>   <!-- dagens dag -->
+          <div class="stribe"></div>        <!-- fremtidig dag -->
+          <div class="stribe"></div>
+          <div class="stribe"></div>
+          <div class="stribe"></div>
+        </div>
+      </div>  <!-- lukker top-del -->
+  
+    
+      <div class="bund-del"> <!-- lys bund -->
+        <div class="ugle-rad"> <!-- en række med søjle, ugle, søjle -->
+          <span class="sojle">🏛️</span>
+          <p class="ugle">🦉</p>
+          <span class="sojle">🏛️</span>
+        </div> <!-- lukker ugle-rad -->
+      
+        <div class="dag-info">
+          <p>Dag 3 af 7 dages rejse</p>
+          <p>Streak 🔥 2 dage</p>
+        </div>
+        <!-- NY: dag og streak info -->
+        <button class="knap" onclick="skiftTilSide(2)">Start dagens refleksion</button> <!-- knap til at starte refleksion, når der klikkes køre funktion skiftTilSide(2) -->
+      </div><!-- lukker bund-del -->
+    
+    </div> <!-- lukker skaerm -->
+
+    <!-- ========== SIDE 2: Spørgsmål ========== -->
+    <div class="side2" id="side2">
+
+    <div class="top-del">
+      <p>Spørgsmål 1 af 3</p>
+      <p>Hvad er det vigtigste for dig og dit fremtidige arbejdsliv?</p>
+    <div class="ugle-rad">
+      <span class="sojle">🏛️</span>
+      <p class="ugle">🦉</p>
+      <span class="sojle">🏛️</span>
+      </div>
+    </div>
+    <div class="bund-del">
+       <textarea id="svar1" placeholder="Skriv dine tanker her..."></textarea>
+      <button class="knap" onclick="skiftTilSide(3)">Næste →</button> <!--  når der klikkes køre funktionen og skifter til side 3: skiftTilSide(3)-->
+    </div>
+    </div>
+
+    <!-- SIDE 3 spørgsmål -->
+  <div class="side2" id="side3">
+  <div class="top-del">
+    <p>Spørgsmål 2 af 3</p>
+    <p>Hvilket job ville du vælge, hvis ingen vidste hvad du valgte?</p>
+    <div class="ugle-rad">
+      <span class="sojle">🏛️</span>
+      <p class="ugle">🦉</p>
+      <span class="sojle">🏛️</span>
+      </div>
+  </div>
+  <div class="bund-del">
+    <textarea id="svar2" placeholder="Skriv dine tanker her..."></textarea>
+    <button class="knap" onclick="skiftTilSide(35)">Næste →</button>
+  </div>
+  </div>
+
+  <!-- SIDE 3.5 — XP celebration -->
+<div class="side2" id="side35">
+  <div class="top-del" style="min-height: 560px; justify-content: center; gap: 16px;">
+    
+    <div id="konfetti">🎊 🎉 🎊</div>
+    
+    <p style="font-size: 60px; margin: 0;">🦉</p>
+    
+    <p style="color: #AFA9EC; font-size: 13px; 
+       letter-spacing: 0.1em; text-transform: uppercase; margin: 0;">
+       Titel optjent
+    </p>
+    
+    <p style="color: white; font-size: 28px; 
+       font-weight: bold; margin: 0;">
+       "Den Ærlige"
+    </p>
+    
+    <p style="color: rgba(255,255,255,0.6); font-size: 13px; 
+       text-align: center; margin: 0; padding: 0 20px;">
+       De færreste stiller sig selv dette spørgsmål
+    </p>
+
+    <div style="background: #534AB7; border-radius: 20px; 
+        padding: 10px 24px; font-size: 22px; 
+        color: white; font-weight: bold;">
+      ⚡ +50 XP
+    </div>
+
+    <button class="knap" style="margin-top: 20px;" 
+        onclick="skiftTilSide(4)">
+      Fortsæt →
+    </button>
+
+  </div>
+</div>
+
+<!-- SIDE 4 spørgsmål -->
+  <div class="side2" id="side4">
+  <div class="top-del">
+    <p>Spørgsmål 3 af 3</p>
+    <p>Hvor vil du gerne være om 10 år?</p>
+    <div class="ugle-rad">
+      <span class="sojle">🏛️</span>
+      <p class="ugle">🦉</p>
+      <span class="sojle">🏛️</span>
+      </div>
+  </div>
+  <div class="bund-del">
+    <textarea id="svar3" placeholder="Skriv dine tanker her..."></textarea>
+    <button class="knap" onclick="skiftTilSide(5)">Næste →</button>
+  </div>
+  </div>
+
+  <!-- side 5 - Afslutning -->
+  <div class="side2" id="side5">
+  <div class="top-del">
+    <p>Godt gået!</p>
+  <div class="dag-numre">
+          <span>1</span>
+          <span>2</span>
+          <span>3</span>
+          <span>4</span>
+          <span>5</span>
+          <span>6</span>
+          <span>7</span>
+          </div>
+  
+          <div class="striber">
+          <div class="stribe aktiv"></div>  <!-- gennemført dag -->
+          <div class="stribe aktiv"></div>  <!-- gennemført dag -->
+          <div class="stribe aktiv"></div>   <!-- gennemført dag -->
+          <div class="stribe"></div>        <!-- fremtidig dag -->
+          <div class="stribe"></div>
+          <div class="stribe"></div>
+          <div class="stribe"></div>
+        </div>
+    <div class="ugle-rad">
+      <span class="sojle">🏛️</span>
+      <p class="ugle">🦉</p>
+      <span class="sojle">🏛️</span>
+      </div>
+  </div>
+  <div class="bund-del">
+    <div class="streak-info">
+    <span>Streak</span>
+    <span class="ild">🔥</span>
+    <span>3 dage</span>
+    </div>
+    
+  <div class="card">
+    <p class="q">Hvad er vigtigst for dig?</p>         <!-- q=question, a=answer, ref=reflection -->
+    <p id="vis-svar1" class="a"></p>
+    </div>
+
+  <div class="card">
+    <p class="q">Hvis ingen vidste hvad du valgte?</p>
+    <p id="vis-svar2" class="a"></p>
+    </div>
+
+  <div class="card">
+    <p class="q">Hvad vil du gerne være om 10 år?</p>
+    <p id="vis-svar3" class="a"></p>
+    </div>
+    <p class="citat">"At kende sig selv er begyndelsen på al visdom" — Aristoteles</p>
+    <p>Husk at fortsætte din rejse i morgen!</p>
+  </div>
+  </div>
+
+</div> <!-- lukker div class="telefon" -->
+
+  <script>                        <!-- NY: JavaScript starter her -->
+ let svar1 = '', svar2 = '', svar3 = '';                                    // Variabel: Lav tre tomme lommer, klar til at gemme svar i senere
+
+function skiftTilSide(nummer)                                               // Lav en opskrift (funktion) der hedder "skiftTilSide" "nummer" er det tal vi sender med — fx skiftTilSide(2) sender tallet 2
+{
+  if (nummer === 3) { 
+  svar1 = document.getElementById('svar1').value;                           // Vi forlader side 2, gem svaret fra tekstfeltet i lommen svar1
+  }
+  if (nummer === 4) {
+    svar2 = document.getElementById('svar2').value;                          // Vi forlader side 3,  gem svaret fra tekstfeltet i lommen svar2
+  }
+  if (nummer === 5) {
+    svar3 = document.getElementById('svar3').value;                          // Vi forlader side 4, gem svaret fra tekstfeltet i lommen svar3
+    document.getElementById('vis-svar1').textContent = svar1;                   // Tag det gemte svar1 og vis det på kortet på side 5
+    document.getElementById('vis-svar2').textContent = svar2;
+    document.getElementById('vis-svar3').textContent = svar3;
+    document.getElementById('side35').style.display = 'none';
+                                                                            // Tag alle tre lommer frem og vis indholdet på kortene på side 5
+  }
+
+  document.getElementById('side1').style.display = 'none';
+  document.getElementById('side2').style.display = 'none';
+  document.getElementById('side3').style.display = 'none';
+  document.getElementById('side35').style.display = 'none';
+  document.getElementById('side4').style.display = 'none';
+  document.getElementById('side5').style.display = 'none';                   // Skjul ALLE sider, ryd bordet fuldstændigt, hver gang vi skifter side: None - gør den usynlig   
+
+  document.getElementById('side' + nummer).style.display = 'block';
+}                                                                             // Vis KUN den side vi vil hen til, fx 'side' + 2 = 'side2' - Block gør den synlig
+    
+  </script>                       <!-- JavaScript slutter her -->
+
+  </body> <!-- lukker body -->
+
+</html> <!-- lukker hele siden -->
