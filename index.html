@@ -34,7 +34,7 @@
 				<div class="career">
 
 					<!-- Række med karrierekort -->
-					<div class="rejse-kort">
+					<div class="rejse-kort" onclick="skiftTilSide(21)">
 						<img src="image(1).webp" alt="Række med mennesker af forskellig profession">
 						<div class="progress-bar">
 							<!-- width styrer hvor meget af stregen der er fyldt (fx 50% eller 100%) -->
@@ -44,7 +44,7 @@
 						<p class="kort-titel">Find din karrierevej</p>
 					</div>
 
-					<div class="rejse-kort">
+					<div class="rejse-kort" onclick="skiftTilSide(31)">
 						<img src="image(2).webp" alt="Ung kvinde tegner drømmende billede på tablet">
 						<div class="progress-bar">
 							<div class="progress-fill" style="width: 0%"></div>
@@ -57,52 +57,63 @@
 
 			</div> <!-- /bund-del -->
 
-		</div> <!-- /skaerm -->
+		</div> <!-- /side 1 -->
 
-	</div> <!-- /telefon -->
-    <!-- ========== SIDE 2: Spørgsmål ========== -->
-	<div class="side2" id="side2">
+	<!-- ========== Find din karrierevej - Side 1 ========== -->
+	<div class="side2" id="side21">
 
-		<!-- Mørk top-sektion med spørgsmål og dekoration -->
 		<div class="top-del">
-			<p>Spørgsmål 1 af 3</p>
-			<p>Hvad er det vigtigste for dig og dit fremtidige arbejdsliv?</p>
-
 			<!-- Dekorativ række: søjle, ugle, søjle -->
 			<div class="ugle-rad">
 				<span class="sojle">🏛️</span>
-				<p class="ugle">🦉</p>
+				<span class="ugle">🦉</span>
 				<span class="sojle">🏛️</span>
 			</div>
-
-		</div> <!-- /top-del -->
+		</div>
 
 		<!-- Lys bund-sektion med svar og knap -->
 		<div class="bund-del">
-			<textarea id="svar1" placeholder="Skriv dine tanker her..."></textarea>
+			<p class="spørgsmål">Vælger du din vej, eller lader du vejen vælge dig?</p>
+			<p class="underspørgsmål">Mange mennesker når frem til en karriere ikke gennem et bevidst valg, men gennem en række små givne faktorer: hvad deres forældre forventede, hvad deres karakterer tillod, hvad deres venner lavede.<br>
+				Spørgsmålet er, om der er forskel på en vej, du trådte ind på, og en vej, du virkelig valgte.
+				Kan et liv, du er faldet ind i, stadig være et godt liv? Og hvis du fornemmer, at det ikke kan, hvad betyder det så præcist at vælge anderledes nu?
+			</p>
 
-			<!-- Klik kalder skiftTilSide(3), som skifter til side 3 -->
-			<button class="knap" onclick="skiftTilSide(3)">Næste →</button>
+
+			<textarea id="karriere-svar1" placeholder="Skriv dine tanker her..."></textarea>
+
+			<button class="knap" onclick="skiftTilSide(35)">Næste →</button>
 		</div> <!-- /bund-del -->
 
 	</div> <!-- /side2 -->
-    <!-- SIDE 3 spørgsmål -->
-  <div class="side2" id="side3">
-  <div class="top-del">
-    <p>Spørgsmål 2 af 3</p>
-    <p>Hvilket job ville du vælge, hvis ingen vidste hvad du valgte?</p>
-    <div class="ugle-rad">
-      <span class="sojle">🏛️</span>
-      <p class="ugle">🦉</p>
-      <span class="sojle">🏛️</span>
-      </div>
-  </div>
-  <div class="bund-del">
-    <textarea id="svar2" placeholder="Skriv dine tanker her..."></textarea>
-    <button class="knap" onclick="skiftTilSide(35)">Næste →</button>
-  </div>
-  </div>
+    <!-- ========== SIDE 2: Spørgsmål ========== -->
+		<div class="side2" id="side31">
 
+			<div class="top-del">
+				<!-- Dekorativ række: søjle, ugle, søjle -->
+				<div class="ugle-rad">
+					<span class="sojle">🏛️</span>
+					<span class="ugle">🦉</span>
+					<span class="sojle">🏛️</span>
+				</div>
+			</div>
+
+			<!-- Lys bund-sektion med svar og knap -->
+			<div class="bund-del">
+				<p class="spørgsmål">Er et værktøj nogensinde bare et værktøj?</p>
+				<p class="underspørgsmål">Vi har en tendens til at tænke på teknologi som neutral, noget der simpelthen gør, hvad vi beder den om.<br>
+					Men en hammer former, hvordan vi griber et søm an, en søgemaskine former, hvad vi synes er værd at vide, og en social platform former, hvem vi tror, vi er i forhold til andre.
+					Spørgsmålet er, om nogen teknologi virkelig er ligeglad med den person, der bruger den.
+					Bærer et værktøj sin designers antagelser i sig? Og hvis ja, hvad betyder det for dig, hver gang du tager et op?
+				</p>
+
+
+				<textarea id="teknologi-svar1" placeholder="Skriv dine tanker her..."></textarea>
+
+				<button class="knap" onclick="skiftTilSide(35)">Næste →</button>
+			</div> <!-- /bund-del -->
+
+		</div> <!-- /side2 -->
   <!-- SIDE 3.5 — XP celebration -->
 <div class="side2" id="side35">
   <div class="top-del" style="min-height: 560px; justify-content: center; gap: 16px;">
@@ -132,30 +143,12 @@
       ⚡ +50 XP
     </div>
 
-    <button class="knap" style="margin-top: 20px;" 
-        onclick="skiftTilSide(4)">
+    <button class="knap" style="margin-top: 20px;" onclick="skiftTilSide(5)">
       Fortsæt →
     </button>
 
   </div>
 </div>
-
-<!-- SIDE 4 spørgsmål -->
-  <div class="side2" id="side4">
-  <div class="top-del">
-    <p>Spørgsmål 3 af 3</p>
-    <p>Hvor vil du gerne være om 10 år?</p>
-    <div class="ugle-rad">
-      <span class="sojle">🏛️</span>
-      <p class="ugle">🦉</p>
-      <span class="sojle">🏛️</span>
-      </div>
-  </div>
-  <div class="bund-del">
-    <textarea id="svar3" placeholder="Skriv dine tanker her..."></textarea>
-    <button class="knap" onclick="skiftTilSide(5)">Næste →</button>
-  </div>
-  </div>
 
   <!-- side 5 - Afslutning -->
   <div class="side2" id="side5">
@@ -212,34 +205,21 @@
   </div>
   </div>
 
-</div> <!-- lukker div class="telefon" -->
+
+	</div> <!-- /telefon -->
 
   <script>                        <!-- NY: JavaScript starter her -->
  let svar1 = '', svar2 = '', svar3 = '';                                    // Variabel: Lav tre tomme lommer, klar til at gemme svar i senere
 
-function skiftTilSide(nummer)                                               // Lav en opskrift (funktion) der hedder "skiftTilSide" "nummer" er det tal vi sender med — fx skiftTilSide(2) sender tallet 2
+function skiftTilSide(nummer)                                               // Lav en funktion der hedder "skiftTilSide" "nummer" er det tal vi sender med — fx skiftTilSide(2) sender tallet 2
 {
-  if (nummer === 3) { 
-  svar1 = document.getElementById('svar1').value;                           // Vi forlader side 2, gem svaret fra tekstfeltet i lommen svar1
-  }
-  if (nummer === 4) {
-    svar2 = document.getElementById('svar2').value;                          // Vi forlader side 3,  gem svaret fra tekstfeltet i lommen svar2
-  }
-  if (nummer === 5) {
-    svar3 = document.getElementById('svar3').value;                          // Vi forlader side 4, gem svaret fra tekstfeltet i lommen svar3
-    document.getElementById('vis-svar1').textContent = svar1;                   // Tag det gemte svar1 og vis det på kortet på side 5
-    document.getElementById('vis-svar2').textContent = svar2;
-    document.getElementById('vis-svar3').textContent = svar3;
-    document.getElementById('side35').style.display = 'none';
-                                                                            // Tag alle tre lommer frem og vis indholdet på kortene på side 5
-  }
-
   document.getElementById('side1').style.display = 'none';
-  document.getElementById('side2').style.display = 'none';
-  document.getElementById('side3').style.display = 'none';
+  document.getElementById('side21').style.display = 'none';
+  document.getElementById('side31').style.display = 'none';
   document.getElementById('side35').style.display = 'none';
-  document.getElementById('side4').style.display = 'none';
-  document.getElementById('side5').style.display = 'none';                   // Skjul ALLE sider, ryd bordet fuldstændigt, hver gang vi skifter side: None - gør den usynlig   
+  document.getElementById('side5').style.display = 'none';
+
+  // Skjul ALLE sider, ryd bordet fuldstændigt, hver gang vi skifter side: None - gør den usynlig
 
   document.getElementById('side' + nummer).style.display = 'block';
 }                                                                             // Vis KUN den side vi vil hen til, fx 'side' + 2 = 'side2' - Block gør den synlig
@@ -247,7 +227,7 @@ function skiftTilSide(nummer)                                               // L
   // Notifikation animation
   window.addEventListener('load', function() {
       const notif = document.getElementById('notifikation');
-      setTimeout(function() { notif.classList.add('synlig'); }, 400); // Sætter notifikation til synlig efter 400 ms
+      setTimeout(function() { notif.classList.add('synlig'); }, 1000); // Sætter notifikation til synlig efter 1000 ms
       setTimeout(function() { notif.classList.remove('synlig'); }, 3500); // Sætter notifikation til usynlig efter 3500 ms
   });
   </script>                       <!-- JavaScript slutter her -->
