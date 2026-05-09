@@ -1,263 +1,91 @@
 <!DOCTYPE html> <!-- Fortæller browseren: "dette er et HTML dokument" -->
-<html lang="en"> <!-- Starter hele siden — lang="en" siger sproget er engelsk -->
+	<html lang="dk"> <!-- Starter hele siden — lang="dk" siger sproget er dansk -->
 
   <head> <!-- Alt herinde er usynligt for brugeren — opsætning og regler -->
-    <meta charset="UTF-8"> <!-- Tillader æ ø å og andre specialtegn -->
-    <title>Reflectionjourney</title> <!-- Det der vises i browserens fane øverst -->
-
-  <style> /* Her begynder CSS — vi skifter sprog fra HTML til CSS, CSS hjælper os med at style siden */
-      body {
-      background: #f0e6f0; /* sætter baggrundsfarve */
-      font-family: Georgia, serif; /* sætter skrifttype */
-      display: flex; /* sætter layout til "flexbox" — gør det nemt at centrere indholdet */
-      justify-content: center; /* centrer vandret */
-      align-items: center; /* centrer lodret */
-      min-height: 100vh; /* giv siden en mindste-højde på hele skærmhøjden */
-      } /*body-blokken slutter her */
-
-    .telefon { /* punktum foran = "find alt med class='telefon'" .navn = find class */
-      background: #1a1a1a;  /* mørk baggrund — næsten sort */
-      width: 320px;         /* bredde — ca. som en mobilskærm */
-      border-radius: 40px;  /* runde hjørner — jo højere tal, jo rundere */
-      padding: 12px;        /* luft mellem kanten og indholdet indeni */
-      min-height: 560px;    /* NY: giv boksen en mindste-højde */
-      } /* telefon-blokken slutter her */
-
-    .skaerm {           /* tilføjes her — efter .telefon */
-      background: rgb(255, 255, 255); /* hvid baggrund */
-      border-radius: 30px; /* runde hjørner — lidt mindre end telefonen for at skabe en "skærm" effekt */
-      overflow: hidden;   /* skjuler indhold, der overskrider boksen */
-      min-height: 560px; /* NY: giv skærmen samme mindste-højde som telefonen for at sikre den fylder hele pladsen */
-      width: 100%;     /* NY: lad skærmen fylde hele bredden af telefonen, så den automatisk tilpasser sig telefonens bredde */
-      }
-
-    .top-del {
-      background: #1C1A3A;  /* mørk lilla — næsten sort */
-      padding: 24px 20px;   /* luft indeni — 24px top/bund, 20px venstre/højre */
-      display: flex;          /* gør jeg kan rykke rundt på elementer */
-      flex-direction: column; /* NY: stable elementer lodret */
-      align-items: center;    /* NY: centrer vandret */
-      }
-
-    .bund-del {
-      background: #faf9f7;  /* næsten hvid */
-      padding: 20px;        /* luft indeni */
-      display: flex;          /* NY: tænd for arrangøren */
-      flex-direction: column; /* NY: stable elementer lodret */
-      min-height: 400px;      /* NY: giv den noget højde at arbejde med */
-    }
-
-    .notifikation {
-      background: rgba(255,255,255,0.10); /* gennemsigtig hvid baggrund */
-      border-radius: 10px;                /* runde hjørner */
-      padding: 9px 12px;                  /* luft indeni */
-      display: flex;                      /* placer klokke og tekst side om side */
-      align-items: center;                /* centrer dem lodret */
-      gap: 10px;                          /* afstand mellem klokke og tekst */
-      width: 100%;                        /* fyld hele bredden */
-      }
-
-    .notifikation p {
-      color: white; /* hvid tekst */
-      margin: 0;    /* fjern automatisk afstand */
-      }
-    .progress-bar {
-      background: rgba(83,74,183,0.15); /* gennemsigtig lilla baggrund */
-      border-radius: 20px;              /* runde hjørner */
-      height: 24px;                     /* tykkelse på stregen */
-      width: 100%;                   /* fyld hele bredden */                
-      position: relative;             /* gør det muligt at placere teksten ovenpå stregen */
-      overflow: hidden;               /* skjul det fyld, der stikker ud over kanten */
-      margin-top: 8px;
-      }
-
-    .progress-fill {
-      background: #534AB7;
-      height: 100%;
-      border-radius: 20px;
-      width: 43%;
-      }
-
-    .progress-bar span {
-      position: absolute;                 /* løft teksten ud af den normale rækkefølge og placer den præcist oven på progress-bar — muligt fordi progress-bar har position: relative. Normalt placerer HTML elementer sig selv efter hinanden — ligesom tekst på en linje. Det kalder man "normal flow".  */
-      top: 50%;                            /* start ved midten af baren, målt fra toppen */
-      left: 50%;                          /* start ved midten af baren, målt fra venstre */                 
-      transform: translate(-50%, -50%);    /* centrer teksten perfekt i midten af stregen */    
-      font-size: 11px;
-      color:black;
-      }
-   
-    .ugle {
-      font-size: 40px;   /* stor ugle */
-      text-align: center; /* centrer den */
-      margin: 0;          /* fjern automatisk afstand */
-      }
-
-    .rejse-kort {
-      flex: 0 0 100%;        /* tag præcis 100% — hverken mere eller mindre */
-      scroll-snap-align: center;    /* hvert kort snapper på plads */
-      }
-    
-    .career {
-      overflow-x: scroll;           /* tillad vandret scrolling */
-      scroll-snap-type: x mandatory; /* snap til næste kort */
-      display: flex;          /* side om side */
-      gap: 20px;             /* afstand mellem søjle, ugle, søjle */
-      margin-bottom: 12px;   /* luft under */
-      }
-    
-    .career img {
-      width: 100%;  /* styrer selve billedet */
-      height: 200px;  
-      object-fit: contain;   /* zoom ind på billedet til det fylder — klip kanter væk */
-      }
-      .rejse-kort p {
-      text-align: center;  /* centrer tekst inde i hvert kort */
-      color:black;
-      }
-      
-
-    .knap {
-      margin-top: auto; /* skub knappen ned mod bunden */
-      background: #534AB7;  /* lilla baggrund */
-      color: #EEEDFE;        /* lys tekst */
-      border: none;          /* fjern browserens standard-kant */
-      border-radius: 12px;   /* runde hjørner */
-      padding: 14px;         /* luft indeni */
-      font-size: 15px;       /* tekststørrelse */
-      width: 100%;           /* fyld hele bredden */
-      }
-
-    .dag-info {
-      text-align: center; /* centrer teksten */
-      margin-top: 12px;   /* luft over */
-      }
-
-    .dag-info p {
-      margin: 0;          /* fjern automatisk afstand */
-      color: #888780;     /* grå tekst */
-      font-size: 13px;    /* lille tekst */
-      }
-
-    .side2 {
-      display: none; /* skjult som standard */
-      color: white;
-      border-radius: 30px;  /* runde hjørner som .skaerm */
-      overflow: hidden;     /* klip indhold der stikker ud */
-      min-height: 560px;    /* samme højde som side 1 */
-      width: 100%; 
-      }
-    
-      textarea {
-      width: 100%;        /* fyld hele bredden */
-      height: 200px;      /* højden — prøv at ændre tallet */
-      box-sizing: border-box; /* padding tæller med i bredden - uden den ville tekstfeltet stikke ud over telefonens kanter fordi padding lægges ovenpå width: 100% */
-     }
-
-    .ild{
-      font-size: 40px;
-        }
-
-    #side5 .bund-del { /* undtagelse: Find bund-del der sider inde i #side5 og gør teksten sort */
-      color: black; /* kun tekst i bund-del på side 5 */
-      }
-
-    .citat {
-      font-style: italic; /* kursiv tekst */
-      color: #5F5E5A;     /* grå farve */
-      }
-
-      .card {
-      background: white;
-      border-radius: 8px;
-      padding: 10px 12px;
-      border-left: 3px solid #534AB7;
-      margin-bottom: 8px;
-      }
-
-    .q {
-      font-size: 11px;
-      color: #888780;
-      margin: 0 0 4px;
-      }
-
-    .a {
-      font-size: 13px;
-      color: #2C2C2A;
-      font-style: italic;
-      margin: 0;
-      }
-
-    #side5 .bund-del {
-      overflow-y: scroll;
-      max-height: 350px;
-    }
-</style> <!-- Her slutter CSS — vi er tilbage i HTML -->
-
+	  <meta charset="UTF-8"> <!-- Tillader æ ø å og andre specialtegn -->
+	  <title>Reflection Journey</title> <!-- Det der vises i browserens fane øverst -->
+	  <link rel="stylesheet" href="styles.css"> <!-- Henter CSS fra ekstern fil: styles.css -->
   </head> <!-- head-sektionen slutter her -->
 
- 
-  <body> <!-- Alt herinde vises på siderne -->
-<!-- ========== SIDE 1: overblik ========== -->
-<div class="telefon"> <!-- en usynlig boks med navnet "telefon", class = navngivning - div er en usynlig boks står for: division -->
-      
-    <div class="skaerm" id="side1"> <!--id er identifikation -->
-      <div class="top-del"> <!-- NY: mørk top -->
-        <div class="notifikation"> <!-- notifikations-boks -->
-          <span>🔔</span>          <!-- span tager kun den plads det tildeles: klokke — fylder kun ikonets plads -->
-          <div>                    <!-- tekstboks ved siden af klokken -->
-            <p>Husk at reflektere i dag</p>
-            <p>Din streak er i fare</p>
-          </div>
-        </div> <!-- lukker notifikation -->
-      </div>  <!-- lukker top-del -->
-  
-    
-      <div class="bund-del"> <!-- lys bund -->
-        <div class="career">
-          <div class="rejse-kort"> <!-- en række med søjle, ugle, søjle -->
-          <img src="image(1).webp">
-           <!-- Dag-numre -->
-        <div class="progress-bar">
-        <div class="progress-fill"style="width: 43%"></div>
-         <span>3/7 days completed</span> 
-        </div>
-        <p>Career path</p>
-          </div>
-          <div class="rejse-kort">
-          <img src="image(2).webp">
-            <!-- Dag-numre -->
-        <div class="progress-bar">
-        <div class="progress-fill" style="width: 0%"></div> <!-- NY: style="width: 0%" styrer hvor meget af stregen der er fyldt, prøv at ændre tallet til fx 50% eller 100% -->
-         <span>0/7 days completed</span> 
-        </div>
-        <p>How to use technology wisely</p>
-          </div>
-        </div> <!-- lukker career -->
-        <!-- NY: dag og streak info -->
-        <button class="knap" onclick="skiftTilSide(2)">Start dagens refleksion</button> <!-- knap til at starte refleksion, når der klikkes køre funktion skiftTilSide(2) -->
-      </div><!-- lukker bund-del -->
-    
-    </div> <!-- lukker skaerm -->
+	<body> <!-- Alt herinde vises på siderne -->
 
+	<!-- ========== SIDE 1: overblik ========== -->
+	<div class="telefon">
+
+		<!-- Notifikationsboks -->
+		<div class="notifikation" id="notifikation">
+			<span class="notif-ikon">🔔</span>
+			<div>
+				<p style="font-weight: bold;">Reflection Journey</p>
+				<p>Husk at reflektere i dag — din streak er i fare</p>
+			</div>
+		</div>
+
+		<!-- Skærm / side 1 -->
+		<div class="skaerm" id="side1">
+
+			<!-- Mørk top-sektion -->
+			<div class="top-del">
+			</div>
+
+			<!-- Lys bund-sektion -->
+			<div class="bund-del">
+
+				<div class="career">
+
+					<!-- Række med karrierekort -->
+					<div class="rejse-kort">
+						<img src="image(1).webp" alt="Række med mennesker af forskellig profession">
+						<div class="progress-bar">
+							<!-- width styrer hvor meget af stregen der er fyldt (fx 50% eller 100%) -->
+							<div class="progress-fill" style="width: 43%"></div>
+							<span>3/7 dage fuldført</span>
+						</div>
+						<p class="kort-titel">Find din karrierevej</p>
+					</div>
+
+					<div class="rejse-kort">
+						<img src="image(2).webp" alt="Ung kvinde tegner drømmende billede på tablet">
+						<div class="progress-bar">
+							<div class="progress-fill" style="width: 0%"></div>
+							<span>0/7 dage fuldført</span>
+						</div>
+						<p class="kort-titel">Hvordan du bruger teknologi fornuftigt</p>
+					</div>
+
+				</div> <!-- /career -->
+
+			</div> <!-- /bund-del -->
+
+		</div> <!-- /skaerm -->
+
+	</div> <!-- /telefon -->
     <!-- ========== SIDE 2: Spørgsmål ========== -->
-    <div class="side2" id="side2">
+	<div class="side2" id="side2">
 
-    <div class="top-del">
-      <p>Spørgsmål 1 af 3</p>
-      <p>Hvad er det vigtigste for dig og dit fremtidige arbejdsliv?</p>
-    <div class="ugle-rad">
-      <span class="sojle">🏛️</span>
-      <p class="ugle">🦉</p>
-      <span class="sojle">🏛️</span>
-      </div>
-    </div>
-    <div class="bund-del">
-       <textarea id="svar1" placeholder="Skriv dine tanker her..."></textarea>
-      <button class="knap" onclick="skiftTilSide(3)">Næste →</button> <!--  når der klikkes køre funktionen og skifter til side 3: skiftTilSide(3)-->
-    </div>
-    </div>
+		<!-- Mørk top-sektion med spørgsmål og dekoration -->
+		<div class="top-del">
+			<p>Spørgsmål 1 af 3</p>
+			<p>Hvad er det vigtigste for dig og dit fremtidige arbejdsliv?</p>
 
+			<!-- Dekorativ række: søjle, ugle, søjle -->
+			<div class="ugle-rad">
+				<span class="sojle">🏛️</span>
+				<p class="ugle">🦉</p>
+				<span class="sojle">🏛️</span>
+			</div>
+
+		</div> <!-- /top-del -->
+
+		<!-- Lys bund-sektion med svar og knap -->
+		<div class="bund-del">
+			<textarea id="svar1" placeholder="Skriv dine tanker her..."></textarea>
+
+			<!-- Klik kalder skiftTilSide(3), som skifter til side 3 -->
+			<button class="knap" onclick="skiftTilSide(3)">Næste →</button>
+		</div> <!-- /bund-del -->
+
+	</div> <!-- /side2 -->
     <!-- SIDE 3 spørgsmål -->
   <div class="side2" id="side3">
   <div class="top-del">
@@ -415,7 +243,13 @@ function skiftTilSide(nummer)                                               // L
 
   document.getElementById('side' + nummer).style.display = 'block';
 }                                                                             // Vis KUN den side vi vil hen til, fx 'side' + 2 = 'side2' - Block gør den synlig
-    
+
+  // Notifikation animation
+  window.addEventListener('load', function() {
+      const notif = document.getElementById('notifikation');
+      setTimeout(function() { notif.classList.add('synlig'); }, 400); // Sætter notifikation til synlig efter 400 ms
+      setTimeout(function() { notif.classList.remove('synlig'); }, 3500); // Sætter notifikation til usynlig efter 3500 ms
+  });
   </script>                       <!-- JavaScript slutter her -->
 
   </body> <!-- lukker body -->
