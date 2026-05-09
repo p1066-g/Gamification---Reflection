@@ -27,7 +27,7 @@ body {
 
 .top-del {
     background: #1C1A3A;  /* mørk lilla — næsten sort */
-    padding: 24px 20px;   /* luft indeni — 24px top/bund, 20px venstre/højre */
+    padding: 14px 20px;   /* luft indeni — 24px top/bund, 20px venstre/højre */
     display: flex;          /* gør jeg kan rykke rundt på elementer */
     flex-direction: column; /* NY: stable elementer lodret */
     align-items: center;    /* NY: centrer vandret */
@@ -41,7 +41,7 @@ body {
     padding: 20px;        /* luft indeni */
     display: flex;          /* NY: tænd for arrangøren */
     flex-direction: column; /* NY: stable elementer lodret */
-    min-height: 400px;      /* NY: giv den noget højde at arbejde med */
+    gap: 10px;
 }
 
 .notifikation {
@@ -103,7 +103,7 @@ body {
 }
 
 .ugle {
-    font-size: 40px;   /* stor ugle */
+    font-size: 30px;   /* stor ugle */
     text-align: center; /* centrer den */
     margin: 0;          /* fjern automatisk afstand */
 }
@@ -136,7 +136,7 @@ body {
     padding: 18px 16px 12px 16px;
     display: flex;          /* side om side */
     gap: 20px;             /* afstand mellem søjle, ugle, søjle */
-    max-height: 440px;
+    max-height: 460px;
     margin: 0 -16px;
     background: radial-gradient(ellipse at 20% 30%, rgba(200, 195, 220, 0.6) 0%, transparent 50%),
     radial-gradient(ellipse at 80% 70%, rgba(180, 175, 210, 0.5) 0%, transparent 50%),
@@ -164,6 +164,23 @@ body {
     font-weight: bold;
 }
 
+.spørgsmål {
+    margin: 0 0 8px;
+    color: #1C1A3A;
+    text-shadow: 2px 2px 2px darkgray;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.underspørgsmål {
+    margin: 0 0 8px;
+    color: #1C1A3A;
+    font-size: 12px;
+    text-align: center;
+    font-family: Baskerville, serif;
+}
+
 .knap {
     margin-top: auto; /* skub knappen ned mod bunden */
     background: #534AB7;  /* lilla baggrund */
@@ -173,6 +190,15 @@ body {
     padding: 14px;         /* luft indeni */
     font-size: 15px;       /* tekststørrelse */
     width: 100%;           /* fyld hele bredden */
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.knap:hover {
+    transform: scale(1.04);
+    box-shadow: 0 0 10px 6px rgba(83, 74, 183, 0.4),
+    0 4px 16px rgba(0,0,0,0.10);
+    border-color: white;
+    cursor: pointer;
 }
 
 .dag-info p {
@@ -192,8 +218,11 @@ body {
 
 textarea {
     width: 100%;        /* fyld hele bredden */
-    height: 200px;      /* højden — prøv at ændre tallet */
+    height: 150px;      /* højden — prøv at ændre tallet */
     box-sizing: border-box; /* padding tæller med i bredden - uden den ville tekstfeltet stikke ud over telefonens kanter fordi padding lægges ovenpå width: 100% */
+    font-family: Georgia, serif; /* matches the rest of the page */
+    font-size: 10px;
+    padding: 10px;
 }
 
 .ild {
