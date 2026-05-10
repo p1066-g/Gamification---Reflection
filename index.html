@@ -364,7 +364,7 @@ function skiftTilSide(nummer, filosof, startXP)                                 
 }
   // Skjul ALLE sider, ryd bordet fuldstændigt, hver gang vi skifter side: None - gør den usynlig
 
-  document.getElementById('side' + nummer).style.display = 'block';
+  document.getElementById('side' + nummer).style.display = 'flex';
   if (nummer === 35 && filosof) {  // Hvis vi går til side 35 OG der er en filosof med
     const billede = document.getElementById('filosof-billede');
     billede.src = filosof + '.webp';  // fx 'sartre' + '.webp' = 'sartre.webp'

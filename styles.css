@@ -225,6 +225,7 @@ body {
     overflow-y: auto;
     min-height: 560px;    /* samme højde som side 1 */
     width: 100%;
+    flex-direction: column;
 }
 
 textarea {
@@ -265,6 +266,8 @@ textarea {
     color: #2C2C2A;
     font-style: italic;
     margin: 0;
+    word-wrap: break-word;  /* NY: bryd lange ord/sætninger */
+    white-space: normal;    /* NY: tillad tekstombrydning */
 }
 
 #side5 .bund-del {
