@@ -375,7 +375,7 @@ aktivDage = (startXP / 50) + 1;  // beregn dag-nummer (150/50 = 3 + 1 = dag 4)
     // NY: beregn og vis mangler-tekst
 const manglerXP = 350 - (startXP + 50);              // hvor mange XP mangler der?
 const navn = filosof === 'sartre' ? 'Sartre' : 'Heidegger';  // vælg det rigtige navn
-document.getElementById('mangler-tekst').textContent = 'Only ' + manglerXP + ' XP more to unlock ' + navn + ' badge';
+document.getElementById('mangler-tekst').textContent = 'kun ' + manglerXP + ' XP tilbage til at låse ' + navn + ' badge op';
     
    setTimeout(function() {
     document.getElementById('xp-boks').style.display = 'none';  // skjul ⚡ +50 XP    
