@@ -12,7 +12,7 @@ body {
     width: 320px; /* bredde — ca. som en mobilskærm */
     border-radius: 40px; /* runde hjørner — jo højere tal, jo rundere */
     padding: 12px; /* luft mellem kanten og indholdet indeni */
-    min-height: 560px; /* NY: giv boksen en mindste-højde */
+    min-height: 460px; /* NY: giv boksen en mindste-højde */
     position: relative; /* Gør at vi kan lave rum over telefonen til at gemme pop-down notifikationen */
     overflow: hidden; /* Skjuler indhold der stikker ud over telefonens kanter */
 }
@@ -21,13 +21,15 @@ body {
     background: rgb(255, 255, 255); /* hvid baggrund */
     border-radius: 30px; /* runde hjørner — lidt mindre end telefonen for at skabe en "skærm" effekt */
     overflow: hidden;   /* skjuler indhold, der overskrider boksen */
-    min-height: 560px; /* NY: giv skærmen samme mindste-højde som telefonen for at sikre den fylder hele pladsen */
+    min-height: 460px; /* NY: giv skærmen samme mindste-højde som telefonen for at sikre den fylder hele pladsen */
     width: 100%;     /* NY: lad skærmen fylde hele bredden af telefonen, så den automatisk tilpasser sig telefonens bredde */
+    display: flex;
+    flex-direction: column;
 }
 
 .top-del {
     background: #1C1A3A;  /* mørk lilla — næsten sort */
-    padding: 14px 20px;   /* luft indeni — 24px top/bund, 20px venstre/højre */
+    padding: 10px 20px;   /* luft indeni — 24px top/bund, 20px venstre/højre */
     display: flex;          /* gør jeg kan rykke rundt på elementer */
     flex-direction: column; /* NY: stable elementer lodret */
     align-items: center;    /* NY: centrer vandret */
@@ -42,6 +44,7 @@ body {
     display: flex;          /* NY: tænd for arrangøren */
     flex-direction: column; /* NY: stable elementer lodret */
     gap: 10px;
+    flex: 1;
 }
 
 .notifikation {
@@ -102,6 +105,14 @@ body {
     color:black;
 }
 
+.top-del-titel{
+    color: #AFA9EC;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 0;
+}
+
 .ugle {
     font-size: 30px;   /* stor ugle */
     text-align: center; /* centrer den */
@@ -136,7 +147,7 @@ body {
     padding: 18px 16px 12px 16px;
     display: flex;          /* side om side */
     gap: 20px;             /* afstand mellem søjle, ugle, søjle */
-    max-height: 460px;
+    max-height: 360px;
     margin: 0 -16px;
     background: radial-gradient(ellipse at 20% 30%, rgba(200, 195, 220, 0.6) 0%, transparent 50%),
     radial-gradient(ellipse at 80% 70%, rgba(180, 175, 210, 0.5) 0%, transparent 50%),
@@ -211,7 +222,7 @@ body {
     display: none; /* skjult som standard */
     color: white;
     border-radius: 30px;  /* runde hjørner som .skaerm */
-    overflow: hidden;     /* klip indhold der stikker ud */
+    overflow-y: auto;
     min-height: 560px;    /* samme højde som side 1 */
     width: 100%;
 }
@@ -263,3 +274,30 @@ textarea {
     overflow-y: scroll;
     max-height: 350px;
 }
+
+.chat-boble {
+    background: white;
+    border-radius: 0 16px 16px 16px;
+    padding: 14px 16px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    font-size: 15px;
+    line-height: 1.6;
+    color: #1a1a2e;
+    max-width: 280px;
+}
+
+.typing-dot {
+    width: 8px;
+    height: 8px;
+    background: #aaa;
+    border-radius: 50%;
+    animation: typing-bounce 1.2s infinite ease-in-out;
+}
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typing-bounce {
+    0%, 60%, 100% { transform: translateY(0); }
+    30%            { transform: translateY(-6px); }
+}
+
