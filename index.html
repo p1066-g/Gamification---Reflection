@@ -296,7 +296,8 @@
   </div>
 
   <div class="bund-del">
-    <!-- opdateret progress bar -->
+
+	  <!-- opdateret progress bar -->
     <div style="width: 100%; background: #e0e0e0; 
          border-radius: 20px; height: 24px; margin-bottom: 8px; position: relative;">
         <div id="side5-bar" style="width: 0%; background: #534AB7; 
@@ -311,7 +312,14 @@
       <p class="q">Dit svar</p>
       <p id="vis-svar" class="a"></p>
     </div>
-    <p class="citat">"At kende sig selv er begyndelsen på al visdom" — Aristoteles</p>
+	  <!-- streak kort -->
+	  <div class="card" id="side5-streak" style="display: flex; align-items: center; gap: 12px; border-left: none; border-radius: 12px; background: #1C1A3A; padding: 12px 16px;">
+		  <span style="font-size: 28px; line-height: 1;">🔥</span>
+		  <div>
+			  <p style="margin: 0; font-size: 11px; color: rgba(175,169,236,0.7); font-family: Georgia, serif;">NUVÆRENDE STREAK</p>
+			  <p id="streak-tekst" style="margin: 0; font-size: 18px; font-weight: bold; color: white;">4 dage i træk</p>
+		  </div>
+	  </div>
 </div>
 </div> 
 
@@ -361,7 +369,9 @@ function skiftTilSide(nummer, filosof, startXP)                                 
     } else {
         document.getElementById('vis-svar').textContent = document.getElementById('teknologi-svar1').value;
     }
-}
+    document.getElementById('streak-tekst').textContent = aktivDage + ' dage i træk';
+
+    }
   // Skjul ALLE sider, ryd bordet fuldstændigt, hver gang vi skifter side: None - gør den usynlig
 
   document.getElementById('side' + nummer).style.display = 'flex';
@@ -410,7 +420,7 @@ document.getElementById('mangler-tekst').textContent = 'kun ' + manglerXP + ' XP
   let teknologiTimerStartet = false;  // NY variabel til teknologi
 
   function startTimer(ringId, displayId, btnId, hintId) {
-      const TOTAL = 5 * 1;  // Her kan man justere timerens længde / hvornår 'næste'-knappen låser op.
+      const TOTAL = 5 * 60;  // Her kan man justere timerens længde / hvornår 'næste'-knappen låser op.
       let remaining = TOTAL;
       const circumference = 364.4;
       const ring = document.getElementById(ringId);
