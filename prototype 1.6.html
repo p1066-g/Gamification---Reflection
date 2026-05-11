@@ -64,27 +64,26 @@
 		<div class="side2" id="side21">
 
 			<!-- top-del -->
-			<div class="top-del" style="justify-content: center; gap: 14px; position: relative;">
-
+			<div class="top-del" style="justify-content: center; gap: 14px;">
     <button onclick="skiftTilSide(1)" 
-            style="position: absolute; top: 10px; left: 10px;
-                   background: none; border: none; color: white; 
-                   font-size: 20px; cursor: pointer;">←</button>
+            style="background: none; border: none; color: white; 
+                   font-size: 20px; cursor: pointer; align-self: flex-start;">
+      <div class="top-del" style="justify-content: center; gap: 14px;">
+				<p class="top-del-titel">Tid til at reflektere</p>
 
-    <p class="top-del-titel">Tid til at reflektere</p>
+				<!-- timer -->
+				<svg width="60" height="60" viewBox="0 0 140 140" id="timer-svg">
+					<circle cx="70" cy="70" r="58" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="8"/>
+					<circle id="timer-ring"
+					        cx="70" cy="70" r="58" fill="none"
+					        stroke="#AFA9EC" stroke-width="8"
+					        stroke-dasharray="364.4" stroke-dashoffset="0"
+					        stroke-linecap="round"
+					        style="transform: rotate(-90deg); transform-origin: 50% 50%;"/>
+					<text id="timer-display" x="70" y="78" text-anchor="middle"
+					      font-size="36" font-weight="500" fill="white" font-family="monospace">5:00</text>
+				</svg>
 
-    <!-- timer -->
-    <svg width="60" height="60" viewBox="0 0 140 140" id="timer-svg">
-        <circle cx="70" cy="70" r="58" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="8"/>
-        <circle id="timer-ring"
-                cx="70" cy="70" r="58" fill="none"
-                stroke="#AFA9EC" stroke-width="8"
-                stroke-dasharray="364.4" stroke-dashoffset="0"
-                stroke-linecap="round"
-                style="transform: rotate(-90deg); transform-origin: 50% 50%;"/>
-        <text id="timer-display" x="70" y="78" text-anchor="middle"
-              font-size="36" font-weight="500" fill="white" font-family="monospace">5:00</text>
-    </svg>
 			</div>
 			<!-- bund-del -->
 			<div class="bund-del">
@@ -158,12 +157,8 @@
     <!-- ========== SIDE 31: Spørgsmål - Teknologi ========== -->
 		<div class="side2" id="side31">
 			<!-- top-del -->
-			<div class="top-del" style="justify-content: center; gap: 14px; position: relative;">
-    <button onclick="skiftTilSide(1)" 
-            style="position: absolute; top: 10px; left: 10px;
-                   background: none; border: none; color: white; 
-                   font-size: 20px; cursor: pointer;">←</button>
-        <p class= top-del-titel>Tid til at reflektere</p>
+			<div class="top-del" style="justify-content: center; gap: 14px;">
+				<p class= top-del-titel>Tid til at reflektere</p>
 
 				<!-- timer -->
 				<svg width="60" height="60" viewBox="0 0 140 140" id="timer-svg2">
@@ -288,72 +283,65 @@
 </div>
 
   <!-- side 5 - Afslutning -->
-<div class="side2" id="side5">
-  <div class="top-del" style="justify-content: center; gap: 14px;">
-    <p class="top-del-titel">Godt gået!</p>
-    <img id="side5-filosof" src="" 
-         style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover;">
-  </div>
-
-  <div class="bund-del">
-
-	  <!-- opdateret progress bar -->
-    <div style="width: 100%; background: #e0e0e0; 
-         border-radius: 20px; height: 24px; margin-bottom: 8px; position: relative;">
-        <div id="side5-bar" style="width: 0%; background: #534AB7; 
-             border-radius: 20px; height: 100%; transition: width 0.8s ease;">
+  <div class="side2" id="side5">
+  <div class="top-del">
+    <p>Godt gået!</p>
+  <div class="dag-numre">
+          <span>1</span>
+          <span>2</span>
+          <span>3</span>
+          <span>4</span>
+          <span>5</span>
+          <span>6</span>
+          <span>7</span>
+          </div>
+  
+          <div class="striber">
+          <div class="stribe aktiv"></div>  <!-- gennemført dag -->
+          <div class="stribe aktiv"></div>  <!-- gennemført dag -->
+          <div class="stribe aktiv"></div>   <!-- gennemført dag -->
+          <div class="stribe"></div>        <!-- fremtidig dag -->
+          <div class="stribe"></div>
+          <div class="stribe"></div>
+          <div class="stribe"></div>
         </div>
-        <p id="side5-dage" style="position: absolute; top: 50%; left: 50%;
-           transform: translate(-50%, -50%);
-           font-size: 12px; color: #333; margin: 0;"></p>
+    <div class="ugle-rad">
+      <span class="sojle">🏛️</span>
+      <p class="ugle">🦉</p>
+      <span class="sojle">🏛️</span>
+      </div>
+  </div>
+  <div class="bund-del">
+    <div class="streak-info">
+    <span>Streak</span>
+    <span class="ild">🔥</span>
+    <span>3 dage</span>
     </div>
     
-    <div id="side5-svar" class="card">
-      <p class="q">Dit svar</p>
-      <p id="vis-svar" class="a"></p>
+  <div class="card">
+    <p class="q">Hvad er vigtigst for dig?</p>         <!-- q=question, a=answer, ref=reflection -->
+    <p id="vis-svar1" class="a"></p>
     </div>
-	  <!-- streak kort -->
-	  <div class="card" id="side5-streak" style="display: flex; align-items: center; gap: 12px; border-left: none; border-radius: 12px; background: #1C1A3A; padding: 12px 16px;">
-		  <span style="font-size: 28px; line-height: 1;">🔥</span>
-		  <div>
-			  <p style="margin: 0; font-size: 11px; color: rgba(175,169,236,0.7); font-family: Georgia, serif;">NUVÆRENDE STREAK</p>
-			  <p id="streak-tekst" style="margin: 0; font-size: 18px; font-weight: bold; color: white;">4 dage i træk</p>
-		  </div>
-	  </div>
-      <button class="knap" onclick="skiftTilSide(6)">Vis badges →</button>
-</div>
-</div> 
+
+  <div class="card">
+    <p class="q">Hvis ingen vidste hvad du valgte?</p>
+    <p id="vis-svar2" class="a"></p>
+    </div>
+
+  <div class="card">
+    <p class="q">Hvad vil du gerne være om 10 år?</p>
+    <p id="vis-svar3" class="a"></p>
+    </div>
+    <p class="citat">"At kende sig selv er begyndelsen på al visdom" — Aristoteles</p>
+    <p>Husk at fortsætte din rejse i morgen!</p>
+  </div>
+  </div>
 
 
-  <!-- side 6 - afslutning-->
-<div class="side2" id="side6">
-<div class="bund-del">	
-<div grid; grid-template-columns: 1fr 1fr 1fr;> 
-<div class="locked-image"><img src="aristoteles.webp" alt="Locked circular image">
-</div>
-
-<div class="locked-image"><img src="confucius.webp" alt="Locked circular image">
-</div>
-<div class="locked-image"><img src="foucault.webp" alt="Locked circular image">
-</div>
-<div class="locked-image"><img src="heidegger.webp" alt="Locked circular image">
-</div>
-<div class="locked-image"><img src="kant.webp" alt="Locked circular image">
-</div>
-<div class="locked-image"><img src="sartre.webp" alt="Locked circular image">
-</div>
-<div class="locked-image"><img src="platon.webp" alt="Locked circular image">
-</div>
-<div class="locked-image"><img src="sokrates.webp" alt="Locked circular image">
-</div>
-<div class="locked-image"><img src="kierkegaard.webp" alt="Locked circular image">
-</div> <!-- /telefon -->
-</div>
-
+	</div> <!-- /telefon -->
 
   <script>                        <!-- NY: JavaScript starter her -->
-  let aktivFilosof = '';  // husker hvilken filosof
-  let aktivDage = 0;      // husker antal dage                                   // Variabel: Lav tre tomme lommer, klar til at gemme svar i senere
+ let svar1 = '', svar2 = '', svar3 = '';                                    // Variabel: Lav tre tomme lommer, klar til at gemme svar i senere
 
 function skiftTilSide(nummer, filosof, startXP)                                               // Lav en funktion der hedder "skiftTilSide" "nummer" er det tal vi sender med — fx skiftTilSide(2) sender tallet 2
 {
@@ -364,8 +352,6 @@ function skiftTilSide(nummer, filosof, startXP)                                 
   document.getElementById('side32').style.display = 'none';
   document.getElementById('side35').style.display = 'none';
   document.getElementById('side5').style.display = 'none';
-  document.getElementById('side6').style.display = 'none';
-
 
     if (nummer === 22) {
         startSartreChat(); // starter SartreChat funktionen når den går til side 22
@@ -380,40 +366,22 @@ function skiftTilSide(nummer, filosof, startXP)                                 
         startTimer('timer-ring', 'timer-display', 'karriere-knap', 'timer-hint');
     }
 
-    if (nummer === 31 && !teknologiTimerStartet) {
-    teknologiTimerStartet = true;
-    startTimer('timer-ring2', 'timer-display2', 'teknologi-knap', 'timer-hint2');
-}
-    if (nummer === 5) {
-    document.getElementById('side5-bar').style.width = (aktivDage / 7 * 100) + '%';
-    document.getElementById('side5-dage').textContent = aktivDage + '/7 dage fuldført';
-      
-    // sæt filosof-billede
-    document.getElementById('side5-filosof').src = aktivFilosof + '.webp';
-    
-    // hent brugerens svar fra den rigtige tekstboks
-    if (aktivFilosof === 'sartre') {
-        document.getElementById('vis-svar').textContent = document.getElementById('karriere-svar1').value;
-    } else {
-        document.getElementById('vis-svar').textContent = document.getElementById('teknologi-svar1').value;
+    if (nummer === 31 && !karriereTimerStartet) {
+        karriereTimerStartet = true;
+        startTimer('timer-ring2', 'timer-display2', 'teknologi-knap', 'timer-hint2');
     }
-    document.getElementById('streak-tekst').textContent = aktivDage + ' dage i træk';
 
-    }
   // Skjul ALLE sider, ryd bordet fuldstændigt, hver gang vi skifter side: None - gør den usynlig
 
-  document.getElementById('side' + nummer).style.display = 'flex';
+  document.getElementById('side' + nummer).style.display = 'block';
   if (nummer === 35 && filosof) {  // Hvis vi går til side 35 OG der er en filosof med
     const billede = document.getElementById('filosof-billede');
     billede.src = filosof + '.webp';  // fx 'sartre' + '.webp' = 'sartre.webp'
 
-aktivFilosof = filosof;           // gem filosof
-aktivDage = (startXP / 50) + 1;  // beregn dag-nummer (150/50 = 3 + 1 = dag 4)
-
     // NY: beregn og vis mangler-tekst
 const manglerXP = 350 - (startXP + 50);              // hvor mange XP mangler der?
 const navn = filosof === 'sartre' ? 'Sartre' : 'Heidegger';  // vælg det rigtige navn
-document.getElementById('mangler-tekst').textContent = 'kun ' + manglerXP + ' XP tilbage til at låse ' + navn + ' badge op';
+document.getElementById('mangler-tekst').textContent = 'Only ' + manglerXP + ' XP more to unlock ' + navn + ' badge';
     
    setTimeout(function() {
     document.getElementById('xp-boks').style.display = 'none';  // skjul ⚡ +50 XP    
@@ -445,10 +413,9 @@ document.getElementById('mangler-tekst').textContent = 'kun ' + manglerXP + ' XP
 
   // Timer
   let karriereTimerStartet = false;
-  let teknologiTimerStartet = false;  // NY variabel til teknologi
 
   function startTimer(ringId, displayId, btnId, hintId) {
-      const TOTAL = 5 * 60;  // Her kan man justere timerens længde / hvornår 'næste'-knappen låser op.
+      const TOTAL = 5 * 1;  // Her kan man justere timerens længde / hvornår 'næste'-knappen låser op.
       let remaining = TOTAL;
       const circumference = 364.4;
       const ring = document.getElementById(ringId);
