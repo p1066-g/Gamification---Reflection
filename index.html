@@ -1,423 +1,597 @@
 <!DOCTYPE html> <!-- Fortæller browseren: "dette er et HTML dokument" -->
-<html lang="en"> <!-- Starter hele siden — lang="en" siger sproget er engelsk -->
+	<html lang="dk"> <!-- Starter hele siden — lang="dk" siger sproget er dansk -->
 
   <head> <!-- Alt herinde er usynligt for brugeren — opsætning og regler -->
-    <meta charset="UTF-8"> <!-- Tillader æ ø å og andre specialtegn -->
-    <title>Reflectionjourney</title> <!-- Det der vises i browserens fane øverst -->
-
-  <style> /* Her begynder CSS — vi skifter sprog fra HTML til CSS, CSS hjælper os med at style siden */
-      body {
-      background: #f0e6f0; /* sætter baggrundsfarve */
-      font-family: Georgia, serif; /* sætter skrifttype */
-      display: flex; /* sætter layout til "flexbox" — gør det nemt at centrere indholdet */
-      justify-content: center; /* centrer vandret */
-      align-items: center; /* centrer lodret */
-      min-height: 100vh; /* giv siden en mindste-højde på hele skærmhøjden */
-      } /*body-blokken slutter her */
-
-    .telefon { /* punktum foran = "find alt med class='telefon'" .navn = find class */
-      background: #1a1a1a;  /* mørk baggrund — næsten sort */
-      width: 320px;         /* bredde — ca. som en mobilskærm */
-      border-radius: 40px;  /* runde hjørner — jo højere tal, jo rundere */
-      padding: 12px;        /* luft mellem kanten og indholdet indeni */
-      min-height: 560px;    /* NY: giv boksen en mindste-højde */
-      } /* telefon-blokken slutter her */
-
-    .skaerm {           /* tilføjes her — efter .telefon */
-      background: rgb(255, 255, 255); /* hvid baggrund */
-      border-radius: 30px; /* runde hjørner — lidt mindre end telefonen for at skabe en "skærm" effekt */
-      overflow: hidden;   /* skjuler indhold, der overskrider boksen */
-      min-height: 560px; /* NY: giv skærmen samme mindste-højde som telefonen for at sikre den fylder hele pladsen */
-      width: 100%;     /* NY: lad skærmen fylde hele bredden af telefonen, så den automatisk tilpasser sig telefonens bredde */
-      }
-
-    .top-del {
-      background: #1C1A3A;  /* mørk lilla — næsten sort */
-      padding: 24px 20px;   /* luft indeni — 24px top/bund, 20px venstre/højre */
-      display: flex;          /* gør jeg kan rykke rundt på elementer */
-      flex-direction: column; /* NY: stable elementer lodret */
-      align-items: center;    /* NY: centrer vandret */
-      }
-
-    .bund-del {
-      background: #faf9f7;  /* næsten hvid */
-      padding: 20px;        /* luft indeni */
-      display: flex;          /* NY: tænd for arrangøren */
-      flex-direction: column; /* NY: stable elementer lodret */
-      min-height: 400px;      /* NY: giv den noget højde at arbejde med */
-    }
-
-    .notifikation {
-      background: rgba(255,255,255,0.10); /* gennemsigtig hvid baggrund */
-      border-radius: 10px;                /* runde hjørner */
-      padding: 9px 12px;                  /* luft indeni */
-      display: flex;                      /* placer klokke og tekst side om side */
-      align-items: center;                /* centrer dem lodret */
-      gap: 10px;                          /* afstand mellem klokke og tekst */
-      width: 100%;                        /* fyld hele bredden */
-      }
-
-    .notifikation p {
-      color: white; /* hvid tekst */
-      margin: 0;    /* fjern automatisk afstand */
-      }
-    .progress-bar {
-      background: rgba(83,74,183,0.15); /* gennemsigtig lilla baggrund */
-      border-radius: 20px;              /* runde hjørner */
-      height: 24px;                     /* tykkelse på stregen */
-      width: 100%;                   /* fyld hele bredden */                
-      position: relative;             /* gør det muligt at placere teksten ovenpå stregen */
-      overflow: hidden;               /* skjul det fyld, der stikker ud over kanten */
-      margin-top: 8px;
-      }
-
-    .progress-fill {
-      background: #534AB7;
-      height: 100%;
-      border-radius: 20px;
-      width: 43%;
-      }
-
-    .progress-bar span {
-      position: absolute;                 /* løft teksten ud af den normale rækkefølge og placer den præcist oven på progress-bar — muligt fordi progress-bar har position: relative. Normalt placerer HTML elementer sig selv efter hinanden — ligesom tekst på en linje. Det kalder man "normal flow".  */
-      top: 50%;                            /* start ved midten af baren, målt fra toppen */
-      left: 50%;                          /* start ved midten af baren, målt fra venstre */                 
-      transform: translate(-50%, -50%);    /* centrer teksten perfekt i midten af stregen */    
-      font-size: 11px;
-      color:black;
-      }
-   
-    .ugle {
-      font-size: 40px;   /* stor ugle */
-      text-align: center; /* centrer den */
-      margin: 0;          /* fjern automatisk afstand */
-      }
-
-    .rejse-kort {
-      flex: 0 0 100%;        /* tag præcis 100% — hverken mere eller mindre */
-      scroll-snap-align: center;    /* hvert kort snapper på plads */
-      }
-    
-    .career {
-      overflow-x: scroll;           /* tillad vandret scrolling */
-      scroll-snap-type: x mandatory; /* snap til næste kort */
-      display: flex;          /* side om side */
-      gap: 20px;             /* afstand mellem søjle, ugle, søjle */
-      margin-bottom: 12px;   /* luft under */
-      }
-    
-    .career img {
-      width: 100%;  /* styrer selve billedet */
-      height: 200px;  
-      object-fit: contain;   /* zoom ind på billedet til det fylder — klip kanter væk */
-      }
-      .rejse-kort p {
-      text-align: center;  /* centrer tekst inde i hvert kort */
-      color:black;
-      }
-      
-
-    .knap {
-      margin-top: auto; /* skub knappen ned mod bunden */
-      background: #534AB7;  /* lilla baggrund */
-      color: #EEEDFE;        /* lys tekst */
-      border: none;          /* fjern browserens standard-kant */
-      border-radius: 12px;   /* runde hjørner */
-      padding: 14px;         /* luft indeni */
-      font-size: 15px;       /* tekststørrelse */
-      width: 100%;           /* fyld hele bredden */
-      }
-
-    .dag-info {
-      text-align: center; /* centrer teksten */
-      margin-top: 12px;   /* luft over */
-      }
-
-    .dag-info p {
-      margin: 0;          /* fjern automatisk afstand */
-      color: #888780;     /* grå tekst */
-      font-size: 13px;    /* lille tekst */
-      }
-
-    .side2 {
-      display: none; /* skjult som standard */
-      color: white;
-      border-radius: 30px;  /* runde hjørner som .skaerm */
-      overflow: hidden;     /* klip indhold der stikker ud */
-      min-height: 560px;    /* samme højde som side 1 */
-      width: 100%; 
-      }
-    
-      textarea {
-      width: 100%;        /* fyld hele bredden */
-      height: 200px;      /* højden — prøv at ændre tallet */
-      box-sizing: border-box; /* padding tæller med i bredden - uden den ville tekstfeltet stikke ud over telefonens kanter fordi padding lægges ovenpå width: 100% */
-     }
-
-    .ild{
-      font-size: 40px;
-        }
-
-    #side5 .bund-del { /* undtagelse: Find bund-del der sider inde i #side5 og gør teksten sort */
-      color: black; /* kun tekst i bund-del på side 5 */
-      }
-
-    .citat {
-      font-style: italic; /* kursiv tekst */
-      color: #5F5E5A;     /* grå farve */
-      }
-
-      .card {
-      background: white;
-      border-radius: 8px;
-      padding: 10px 12px;
-      border-left: 3px solid #534AB7;
-      margin-bottom: 8px;
-      }
-
-    .q {
-      font-size: 11px;
-      color: #888780;
-      margin: 0 0 4px;
-      }
-
-    .a {
-      font-size: 13px;
-      color: #2C2C2A;
-      font-style: italic;
-      margin: 0;
-      }
-
-    #side5 .bund-del {
-      overflow-y: scroll;
-      max-height: 350px;
-    }
-</style> <!-- Her slutter CSS — vi er tilbage i HTML -->
-
+	  <meta charset="UTF-8"> <!-- Tillader æ ø å og andre specialtegn -->
+	  <meta name="viewport" content="width=device-width, initial-scale=1" />
+	  <title>Reflection Journey</title> <!-- Det der vises i browserens fane øverst -->
+	  <link rel="stylesheet" href="styles.css"> <!-- Henter CSS fra ekstern fil: styles.css -->
   </head> <!-- head-sektionen slutter her -->
 
- 
-  <body> <!-- Alt herinde vises på siderne -->
-<!-- ========== SIDE 1: overblik ========== -->
-<div class="telefon"> <!-- en usynlig boks med navnet "telefon", class = navngivning - div er en usynlig boks står for: division -->
-      
-    <div class="skaerm" id="side1"> <!--id er identifikation -->
-      <div class="top-del"> <!-- NY: mørk top -->
-        <div class="notifikation"> <!-- notifikations-boks -->
-          <span>🔔</span>          <!-- span tager kun den plads det tildeles: klokke — fylder kun ikonets plads -->
-          <div>                    <!-- tekstboks ved siden af klokken -->
-            <p>Husk at reflektere i dag</p>
-            <p>Din streak er i fare</p>
-          </div>
-        </div> <!-- lukker notifikation -->
-      </div>  <!-- lukker top-del -->
-  
+	<body> <!-- Alt herinde vises på siderne -->
     
-      <div class="bund-del"> <!-- lys bund -->
-        <div class="career">
-          <div class="rejse-kort"> <!-- en række med søjle, ugle, søjle -->
-          <img src="image(1).webp">
-           <!-- Dag-numre -->
-        <div class="progress-bar">
-        <div class="progress-fill"style="width: 43%"></div>
-         <span>3/7 days completed</span> 
-        </div>
-        <p>Career path</p>
-          </div>
-          <div class="rejse-kort">
-          <img src="image(2).webp">
-            <!-- Dag-numre -->
-        <div class="progress-bar">
-        <div class="progress-fill" style="width: 0%"></div> <!-- NY: style="width: 0%" styrer hvor meget af stregen der er fyldt, prøv at ændre tallet til fx 50% eller 100% -->
-         <span>0/7 days completed</span> 
-        </div>
-        <p>How to use technology wisely</p>
-          </div>
-        </div> <!-- lukker career -->
-        <!-- NY: dag og streak info -->
-        <button class="knap" onclick="skiftTilSide(2)">Start dagens refleksion</button> <!-- knap til at starte refleksion, når der klikkes køre funktion skiftTilSide(2) -->
-      </div><!-- lukker bund-del -->
-    
-    </div> <!-- lukker skaerm -->
+        <!-- Musikken starter lydløs -->
+    <audio id="baggrunds-musik" loop muted>
+    <source src="https://res.cloudinary.com/dlxyolpnd/video/upload/v1778592171/Bg-musik.mp3" type="audio/mpeg">
+    </audio>
+	<!-- ========== SIDE 1: overblik ========== -->
+	<div class="telefon">
 
-    <!-- ========== SIDE 2: Spørgsmål ========== -->
-    <div class="side2" id="side2">
+		<!-- Notifikationsboks -->
+		<div class="notifikation" id="notifikation">
+			<span class="notif-ikon">🔔</span>
+			<div>
+				<p style="font-weight: bold;">Reflection Journey</p>
+				<p>Husk at reflektere i dag — din streak er i fare</p>
+			</div>
+		</div>
 
-    <div class="top-del">
-      <p>Spørgsmål 1 af 3</p>
-      <p>Hvad er det vigtigste for dig og dit fremtidige arbejdsliv?</p>
-    <div class="ugle-rad">
-      <span class="sojle">🏛️</span>
-      <p class="ugle">🦉</p>
-      <span class="sojle">🏛️</span>
-      </div>
-    </div>
-    <div class="bund-del">
-       <textarea id="svar1" placeholder="Skriv dine tanker her..."></textarea>
-      <button class="knap" onclick="skiftTilSide(3)">Næste →</button> <!--  når der klikkes køre funktionen og skifter til side 3: skiftTilSide(3)-->
-    </div>
-    </div>
+		<!-- Skærm / side 1 -->
+		<div class="skaerm" id="side1">
 
-    <!-- SIDE 3 spørgsmål -->
-  <div class="side2" id="side3">
-  <div class="top-del">
-    <p>Spørgsmål 2 af 3</p>
-    <p>Hvilket job ville du vælge, hvis ingen vidste hvad du valgte?</p>
-    <div class="ugle-rad">
-      <span class="sojle">🏛️</span>
-      <p class="ugle">🦉</p>
-      <span class="sojle">🏛️</span>
-      </div>
-  </div>
-  <div class="bund-del">
-    <textarea id="svar2" placeholder="Skriv dine tanker her..."></textarea>
-    <button class="knap" onclick="skiftTilSide(35)">Næste →</button>
-  </div>
-  </div>
+			<!-- Mørk top-sektion -->
+			<div class="top-del">
+				<p class="top-del-titel" style="padding: 10px">Reflection Journeys</p>
+			</div>
+
+			<!-- Lys bund-sektion -->
+			<div class="bund-del">
+
+				<div class="career">
+
+					<!-- Række med karrierekort -->
+					<div class="rejse-kort" onclick="skiftTilSide(21)">
+						<img src="image(1).webp" alt="Række med mennesker af forskellig profession">
+						<div class="progress-bar">
+							<!-- width styrer hvor meget af stregen der er fyldt (fx 50% eller 100%) -->
+							<div class="progress-fill" style="width: 43%">
+							</div>
+							<span>3/7 dage fuldført</span>
+						</div>
+						<p class="kort-titel">Find din karrierevej</p>
+					</div>
+
+					<div class="rejse-kort" onclick="skiftTilSide(31)">
+						<img src="image(2).webp" alt="Ung kvinde tegner drømmende billede på tablet">
+						<div class="progress-bar">
+							<div class="progress-fill" style="width: 0"></div>
+							<span>0/7 dage fuldført</span>
+						</div>
+						<p class="kort-titel">Hvordan du bruger teknologi fornuftigt</p>
+					</div>
+
+				</div> <!-- /career -->
+
+			</div> <!-- /bund-del -->
+
+		</div> <!-- /side 1 -->
+
+		<!-- ========== Side 21 - Spørgsmål - Karrierevej ========== -->
+		<div class="side2" id="side21">
+
+			<!-- top-del -->
+			<div class="top-del" style="justify-content: center; gap: 14px; position: relative;">
+
+    <button onclick="skiftTilSide(1)" 
+            style="position: absolute; top: 10px; left: 10px;
+                   background: none; border: none; color: white; 
+                   font-size: 20px; cursor: pointer;">←</button>
+
+    <p class="top-del-titel">Tid til at reflektere</p>
+
+    <!-- timer -->
+    <svg width="60" height="60" viewBox="0 0 140 140" id="timer-svg">
+        <circle cx="70" cy="70" r="58" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="8"/>
+        <circle id="timer-ring"
+                cx="70" cy="70" r="58" fill="none"
+                stroke="#AFA9EC" stroke-width="8"
+                stroke-dasharray="364.4" stroke-dashoffset="0"
+                stroke-linecap="round"
+                style="transform: rotate(-90deg); transform-origin: 50% 50%;"/>
+        <text id="timer-display" x="70" y="78" text-anchor="middle"
+              font-size="36" font-weight="500" fill="white" font-family="monospace">5:00</text>
+    </svg>
+			</div>
+			<!-- bund-del -->
+			<div class="bund-del">
+				<!-- spørgsmål -->
+				<p class="spørgsmål">Vælger du din vej, eller lader du vejen vælge dig?</p>
+				<p class="underspørgsmål">Mange mennesker når frem til en karriere ikke gennem et bevidst valg, men gennem en række små givne faktorer: hvad deres forældre forventede, hvad deres karakterer tillod, hvad deres venner lavede.<br>
+					Spørgsmålet er, om der er forskel på en vej, du trådte ind på, og en vej, du virkelig valgte.
+					Kan et liv, du er faldet ind i, stadig være et godt liv? Og hvis du fornemmer, at det ikke kan, hvad betyder det så præcist at vælge anderledes nu?
+				</p>
+
+				<!-- tekstboks -->
+				<label for="karriere-svar1"></label><textarea id="karriere-svar1" placeholder="Skriv dine tanker her..."></textarea>
+				<p class="underspørgsmål">Knappen låses op når tiden er gået</p>
+
+				<!-- knap -->
+				<button class="knap" id="karriere-knap" onclick="skiftTilSide(22)"
+				        style="opacity: 0.4; pointer-events: none;">Næste →</button>
+			</div>
+
+		</div>
+
+		<!-- ========== Sartres svar - efter side 21 ========== -->
+		<div class="side2" id="side22">
+
+			<!-- top-del -->
+			<div class="top-del" style="justify-content: center; gap: 10px; padding-bottom: 20px;">
+				<p class="top-del-titel">Jean-Paul Sartre svarer</p>
+			</div>
+
+			<div class="bund-del" style="gap: 16px; overflow-y: auto;" id="sartre-chat">
+
+				<!-- Besked -->
+				<div id="sartre-msg1" style="display:none; flex-direction: column; gap: 10px;">
+					<div style="display: flex; gap: 10px; align-items: flex-start;">
+						<!-- billed -->
+						<img src="sartre.webp" alt="Sartre"
+						     style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; flex-shrink: 0;">
+						<div>
+							<!-- tekst -->
+							<p style="font-size: 12px; color: #888; margin: 0 0 4px 0;">Jean-Paul Sartre</p>
+							<div class="chat-boble">
+								Du siger, at du ikke ved det. Det accepterer jeg — men kun som et udgangspunkt, ikke som et svar.
+								For ikke-viden er ikke uskyld. Når du ikke ved, om du har valgt din vej, er du allerede midt i et valg: valget om ikke at undersøge det.
+								Eksistensen går forud for essensen. Du er ikke født til noget. Det betyder, at alt det, du kalder "bare sådan det er blevet" — det er dig. Dig, der valgte ikke at vælge.
+								Spørgsmålet er ikke, hvad du <em>ikke</em> ved. Spørgsmålet er: hvad ville du gøre, hvis du rent faktisk troede, at du frit kunne vælge fra i morgen?
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Typing indicator (vises mens Sartre "skriver") -->
+				<div id="sartre-typing" style="display:none; flex-direction: row; gap: 10px; align-items: flex-start;">
+					<img src="sartre.webp" alt="Sartre"
+					     style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; flex-shrink: 0;">
+					<div style="background: white; border-radius: 0 16px 16px 16px;
+                  padding: 14px 18px; box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+                  display: flex; gap: 5px; align-items: center;">
+						<span class="typing-dot"></span>
+						<span class="typing-dot"></span>
+						<span class="typing-dot"></span>
+					</div>
+				</div>
+
+				<!-- knap -->
+				<button class="knap" id="sartre-knap" onclick="skiftTilSide(35, 'sartre', 150)"
+				        style="display:none; margin-top: 8px;">Fortsæt →</button>
+
+			</div>
+		</div>
+
+    <!-- ========== SIDE 31: Spørgsmål - Teknologi ========== -->
+		<div class="side2" id="side31">
+			<!-- top-del -->
+			<div class="top-del" style="justify-content: center; gap: 14px; position: relative;">
+    <button onclick="skiftTilSide(1)" 
+            style="position: absolute; top: 10px; left: 10px;
+                   background: none; border: none; color: white; 
+                   font-size: 20px; cursor: pointer;">←</button>
+        <p class="top-del-titel">Tid til at reflektere</p>
+
+				<!-- timer -->
+				<svg width="60" height="60" viewBox="0 0 140 140" id="timer-svg2">
+					<circle cx="70" cy="70" r="58" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="8"/>
+					<circle id="timer-ring2"
+					        cx="70" cy="70" r="58" fill="none"
+					        stroke="#AFA9EC" stroke-width="8"
+					        stroke-dasharray="364.4" stroke-dashoffset="0"
+					        stroke-linecap="round"
+					        style="transform: rotate(-90deg); transform-origin: 50% 50%;"/>
+					<text id="timer-display2" x="70" y="78" text-anchor="middle"
+					      font-size="36" font-weight="500" fill="white" font-family="monospace">5:00</text>
+				</svg>
+
+			</div>
+
+			<!-- bund-del -->
+			<div class="bund-del" style="gap: 16px; overflow-y: auto; height: 100%; justify-content: flex-start;" >
+				<p class="spørgsmål">Er et værktøj nogensinde bare et værktøj?</p>
+				<p class="underspørgsmål">Vi har en tendens til at tænke på teknologi som neutral, noget der simpelthen gør, hvad vi beder den om.<br>
+					Men en hammer former, hvordan vi griber et søm an, en søgemaskine former, hvad vi synes er værd at vide, og en social platform former, hvem vi tror, vi er i forhold til andre.
+					Spørgsmålet er, om nogen teknologi virkelig er ligeglad med den person, der bruger den.
+					Bærer et værktøj sin designers antagelser i sig? Og hvis ja, hvad betyder det for dig, hver gang du tager et op?
+				</p>
+
+				<!-- tekstboks -->
+				<label for="teknologi-svar1"></label><textarea id="teknologi-svar1" placeholder="Skriv dine tanker her..."></textarea>
+
+				<!-- knap -->
+				<button class="knap" id="teknologi-knap" onclick="skiftTilSide(32)"
+				        style="opacity: 0.4; pointer-events: none;">Næste →</button>
+			</div> <!-- /bund-del -->
+
+		</div> <!-- /side2 -->
+
+		<!-- SIDE 3.2 — Heidegger -->
+		<div class="side2" id="side32">
+
+			<!-- top-del -->
+			<div class="top-del" style="justify-content: center; gap: 10px; padding-bottom: 20px;">
+				<p class="top-del-titel">Martin Heidegger svarer</p>
+			</div>
+
+			<div class="bund-del" style="gap: 16px; overflow-y: auto;" id="Heidegger-chat">
+
+				<!-- Besked -->
+				<div id="heidegger-msg1" style="display:none; flex-direction: column; gap: 10px;">
+					<div style="display: flex; gap: 10px; align-items: flex-start;">
+						<!-- billed -->
+						<img src="heidegger.webp" alt="Heidegger"
+						     style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; flex-shrink: 0;">
+						<!-- tekst -->
+						<div>
+							<p style="font-size: 12px; color: #888; margin: 0 0 4px 0;">Martin Heidegger</p>
+							<div class="chat-boble">
+								Du siger, at du ikke ved det. Det accepterer jeg — men kun som et udgangspunkt, ikke som et svar.
+								For ikke-viden er ikke uskyld. Når du ikke ved, om du har valgt din vej, er du allerede midt i et valg: valget om ikke at undersøge det.
+								Eksistensen går forud for essensen. Du er ikke født til noget. Det betyder, at alt det, du kalder "bare sådan det er blevet" — det er dig. Dig, der valgte ikke at vælge.
+								Spørgsmålet er ikke, hvad du <em>ikke</em> ved. Spørgsmålet er: hvad ville du gøre, hvis du rent faktisk troede, at du frit kunne vælge fra i morgen?
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- typing indicator (viser når Heidegger "skriver") -->
+				<div id="heidegger-typing" style="display:none; flex-direction: row; gap: 10px; align-items: flex-start;">
+					<img src="heidegger.webp" alt="Heidegger"
+					     style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; flex-shrink: 0;">
+					<div style="background: white; border-radius: 0 16px 16px 16px;
+                  padding: 14px 18px; box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+                  display: flex; gap: 5px; align-items: center;">
+						<span class="typing-dot"></span>
+						<span class="typing-dot"></span>
+						<span class="typing-dot"></span>
+					</div>
+				</div>
+
+				<!-- knap -->
+				<button class="knap" id="heidegger-knap" onclick="skiftTilSide(35, 'heidegger', 0)"
+				        style="display:none; margin-top: 8px;">Fortsæt →</button>
+
+			</div>
+		</div>
 
   <!-- SIDE 3.5 — XP celebration -->
 <div class="side2" id="side35">
   <div class="top-del" style="min-height: 560px; justify-content: center; gap: 16px;">
-    
     <div id="konfetti">🎊 🎉 🎊</div>
-    
-    <p style="font-size: 60px; margin: 0;">🦉</p>
-    
-    <p style="color: #AFA9EC; font-size: 13px; 
-       letter-spacing: 0.1em; text-transform: uppercase; margin: 0;">
-       Titel optjent
-    </p>
-    
-    <p style="color: white; font-size: 28px; 
-       font-weight: bold; margin: 0;">
-       "Den Ærlige"
-    </p>
-    
-    <p style="color: rgba(255,255,255,0.6); font-size: 13px; 
-       text-align: center; margin: 0; padding: 0 20px;">
-       De færreste stiller sig selv dette spørgsmål
-    </p>
+   <p id="mangler-tekst" style="color: rgba(255,255,255,0.6); 
+   font-size: 13px; text-align: center; margin: 0;">
+</p>
 
-    <div style="background: #534AB7; border-radius: 20px; 
+	  <img id="filosof-billede" src=""
+	       style="
+     width: 120px;
+     height: 120px;
+     border-radius: 50%;
+     object-fit: cover;
+
+     /* silver glow */
+     border: 2px solid rgba(255,255,255,0.75);
+     box-shadow:
+       0 0 12px rgba(255,255,255,0.55),
+       0 0 30px rgba(210,220,255,0.35),
+       0 0 60px rgba(255,255,255,0.18);
+
+     /* subtle floating rarity feeling */
+     animation: filosofGlow 2.8s ease-in-out infinite;
+     "
+	  alt="Billed af filosof">
+    
+    <div id="xp-boks" style="background: #534AB7; border-radius: 20px;
         padding: 10px 24px; font-size: 22px; 
         color: white; font-weight: bold;">
       ⚡ +50 XP
     </div>
+    <!-- XP progress bar -->
+    <div id="xp-bar-container" style="display: none; width: 100%; 
+          background: rgba(255,255,255,0.15); 
+          border-radius: 20px; height: 36px; position: relative;">
+         <!-- den fyldte del -->
+        <div id="xp-fill" style="width: 0; background: #534AB7;
+         border-radius: 20px; height: 100%; transition: width 1s ease;">
+        </div>
+        <!-- tekst midt i -->
+    <p id="xp-tekst" style="position: absolute; top: 50%; left: 50%; 
+       transform: translate(-50%, -50%); 
+       color: white; font-size: 13px; margin: 0;">150 / 350 XP</p>
 
-    <button class="knap" style="margin-top: 20px;" 
-        onclick="skiftTilSide(4)">
+
+</div> <!-- lukker xp-bar-container -->
+
+    <button class="knap" style="margin-top: 20px;" onclick="skiftTilSide(5)">
       Fortsæt →
     </button>
 
   </div>
 </div>
 
-<!-- SIDE 4 spørgsmål -->
-  <div class="side2" id="side4">
-  <div class="top-del">
-    <p>Spørgsmål 3 af 3</p>
-    <p>Hvor vil du gerne være om 10 år?</p>
-    <div class="ugle-rad">
-      <span class="sojle">🏛️</span>
-      <p class="ugle">🦉</p>
-      <span class="sojle">🏛️</span>
-      </div>
-  </div>
-  <div class="bund-del">
-    <textarea id="svar3" placeholder="Skriv dine tanker her..."></textarea>
-    <button class="knap" onclick="skiftTilSide(5)">Næste →</button>
-  </div>
-  </div>
-
   <!-- side 5 - Afslutning -->
-  <div class="side2" id="side5">
-  <div class="top-del">
-    <p>Godt gået!</p>
-  <div class="dag-numre">
-          <span>1</span>
-          <span>2</span>
-          <span>3</span>
-          <span>4</span>
-          <span>5</span>
-          <span>6</span>
-          <span>7</span>
-          </div>
-  
-          <div class="striber">
-          <div class="stribe aktiv"></div>  <!-- gennemført dag -->
-          <div class="stribe aktiv"></div>  <!-- gennemført dag -->
-          <div class="stribe aktiv"></div>   <!-- gennemført dag -->
-          <div class="stribe"></div>        <!-- fremtidig dag -->
-          <div class="stribe"></div>
-          <div class="stribe"></div>
-          <div class="stribe"></div>
-        </div>
-    <div class="ugle-rad">
-      <span class="sojle">🏛️</span>
-      <p class="ugle">🦉</p>
-      <span class="sojle">🏛️</span>
-      </div>
+<div class="side2" id="side5">
+  <div class="top-del" style="justify-content: center; gap: 14px;">
+    <p class="top-del-titel">Godt gået!</p>
+    <img id="side5-filosof" src=""
+         style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover;" alt="Billed af filosof">
   </div>
+
   <div class="bund-del">
-    <div class="streak-info">
-    <span>Streak</span>
-    <span class="ild">🔥</span>
-    <span>3 dage</span>
-    </div>
-    
-  <div class="card">
-    <p class="q">Hvad er vigtigst for dig?</p>         <!-- q=question, a=answer, ref=reflection -->
-    <p id="vis-svar1" class="a"></p>
-    </div>
+	  <div class="card" style=" align-items: center; gap: 12px; border-left: none; border-radius: 12px; background: white; padding: 12px 16px;">
 
-  <div class="card">
-    <p class="q">Hvis ingen vidste hvad du valgte?</p>
-    <p id="vis-svar2" class="a"></p>
-    </div>
+		  <div class="progress-bar">
+			  <div id="side5-bar" class="progress-fill" style="width: 0"></div>
+			  <span id="side5-dage">0/7 dage fuldført</span>
+		  </div>
 
-  <div class="card">
-    <p class="q">Hvad vil du gerne være om 10 år?</p>
-    <p id="vis-svar3" class="a"></p>
-    </div>
-    <p class="citat">"At kende sig selv er begyndelsen på al visdom" — Aristoteles</p>
-    <p>Husk at fortsætte din rejse i morgen!</p>
-  </div>
-  </div>
+		  <p class="kort-titel" id="journey-title" style="align-self: center"></p>
 
-</div> <!-- lukker div class="telefon" -->
+	  </div>
+    <div id="side5-svar" class="card">
+      <p class="q">Dit svar</p>
+      <p id="vis-svar" class="a"></p>
+    </div>
+	  <!-- streak kort -->
+	  <div class="card" id="side5-streak" style="display: flex; align-items: center; gap: 12px; border-left: none; border-radius: 12px; background: #1C1A3A; padding: 12px 16px;">
+		  <span style="font-size: 28px; line-height: 1;">🔥</span>
+		  <div>
+			  <p style="margin: 0; font-size: 11px; color: rgba(175,169,236,0.7); font-family: Georgia, serif;">NUVÆRENDE STREAK</p>
+			  <p id="streak-tekst" style="margin: 0; font-size: 18px; font-weight: bold; color: white;">4 dage i træk</p>
+		  </div>
+	  </div>
+      <button class="knap" onclick="skiftTilSide(6)">Vis badges →</button>
+</div>
+</div> 
+
+  <!-- side 6 - afslutning-->
+<div class="side2" id="side6">
+		<div class="top-del" style="justify-content: center; gap: 14px;">
+			<p class="top-del-titel" style="padding: 10px">Badges</p>
+		</div>
+	<div class="bund-del">
+
+		<div class="badge-grid">
+			<div class="locked-image"><img src="aristoteles.webp" alt="Locked circular image">
+			</div>
+			<div class="locked-image"><img src="confucius.webp" alt="Locked circular image">
+			</div>
+			<div class="locked-image"><img src="foucault.webp" alt="Locked circular image">
+			</div>
+			<div class="locked-image"><img src="heidegger.webp" alt="Locked circular image">
+			</div>
+			<div class="locked-image"><img src="kant.webp" alt="Locked circular image">
+			</div>
+			<div class="locked-image"><img src="sartre.webp" alt="Locked circular image">
+			</div>
+			<div class="locked-image"><img src="platon.webp" alt="Locked circular image">
+			</div>
+			<div class="locked-image"><img src="sokrates.webp" alt="Locked circular image">
+			</div>
+			<div class="locked-image"><img src="kierkegaard.webp" alt="Locked circular image">
+			</div>
+		</div> <!-- grid -->
+	</div> <!-- bund-del -->
+</div> <!-- side 6 -->
+	</div> <!-- telefon -->
 
   <script>                        <!-- NY: JavaScript starter her -->
- let svar1 = '', svar2 = '', svar3 = '';                                    // Variabel: Lav tre tomme lommer, klar til at gemme svar i senere
+  let aktivFilosof = '';  // husker hvilken filosof
+  let aktivDage = 0;      // husker antal dage
+  let aktivRejse = '';
 
-function skiftTilSide(nummer)                                               // Lav en opskrift (funktion) der hedder "skiftTilSide" "nummer" er det tal vi sender med — fx skiftTilSide(2) sender tallet 2
+function skiftTilSide(nummer, filosof, startXP)                                               // Lav en funktion der hedder "skiftTilSide" "nummer" er det tal vi sender med — fx skiftTilSide(2) sender tallet 2
 {
-  if (nummer === 3) { 
-  svar1 = document.getElementById('svar1').value;                           // Vi forlader side 2, gem svaret fra tekstfeltet i lommen svar1
-  }
-  if (nummer === 4) {
-    svar2 = document.getElementById('svar2').value;                          // Vi forlader side 3,  gem svaret fra tekstfeltet i lommen svar2
-  }
-  if (nummer === 5) {
-    svar3 = document.getElementById('svar3').value;                          // Vi forlader side 4, gem svaret fra tekstfeltet i lommen svar3
-    document.getElementById('vis-svar1').textContent = svar1;                   // Tag det gemte svar1 og vis det på kortet på side 5
-    document.getElementById('vis-svar2').textContent = svar2;
-    document.getElementById('vis-svar3').textContent = svar3;
-    document.getElementById('side35').style.display = 'none';
-                                                                            // Tag alle tre lommer frem og vis indholdet på kortene på side 5
-  }
-
   document.getElementById('side1').style.display = 'none';
-  document.getElementById('side2').style.display = 'none';
-  document.getElementById('side3').style.display = 'none';
+  document.getElementById('side21').style.display = 'none';
+  document.getElementById('side22').style.display = 'none';
+  document.getElementById('side31').style.display = 'none';
+  document.getElementById('side32').style.display = 'none';
   document.getElementById('side35').style.display = 'none';
-  document.getElementById('side4').style.display = 'none';
-  document.getElementById('side5').style.display = 'none';                   // Skjul ALLE sider, ryd bordet fuldstændigt, hver gang vi skifter side: None - gør den usynlig   
+  document.getElementById('side5').style.display = 'none';
+  document.getElementById('side6').style.display = 'none';
 
-  document.getElementById('side' + nummer).style.display = 'block';
-}                                                                             // Vis KUN den side vi vil hen til, fx 'side' + 2 = 'side2' - Block gør den synlig
+if (nummer === 21 || nummer === 31) {   // når man klikker et rejsekort
+    const musik = document.getElementById('baggrunds-musik');
+    musik.muted = false;  // slå lyden til
+    musik.play();         // start afspilning
+}
     
+  if (nummer === 22) {
+        startSartreChat(); // starter SartreChat funktionen når den går til side 22
+        aktivRejse = 'Find din karrierevej';
+        
+    }
+
+    if (nummer === 32) {
+        startHeideggerChat(); // starter Heidegger funktionen når den går til side 32
+        aktivRejse = 'Hvordan du bruger teknologi fornuftigt';
+
+    }
+
+    if (nummer === 21 && !karriereTimerStartet) {
+        karriereTimerStartet = true;
+        startTimer('timer-ring', 'timer-display', 'karriere-knap', 'timer-hint');
+    }
+
+    if (nummer === 31 && !teknologiTimerStartet) {
+    teknologiTimerStartet = true;
+    startTimer('timer-ring2', 'timer-display2', 'teknologi-knap', 'timer-hint2');
+}
+    if (nummer === 5) {
+        document.getElementById('journey-title').textContent = aktivRejse;
+
+    document.getElementById('side5-bar').style.width = (aktivDage / 7 * 100) + '%';
+    document.getElementById('side5-dage').textContent = aktivDage + '/7 dage fuldført';
+      
+    // sæt filosof-billede
+    document.getElementById('side5-filosof').src = aktivFilosof + '.webp';
+    
+    // hent brugerens svar fra den rigtige tekstboks
+    if (aktivFilosof === 'sartre') {
+        document.getElementById('vis-svar').textContent = document.getElementById('karriere-svar1').value;
+    } else {
+        document.getElementById('vis-svar').textContent = document.getElementById('teknologi-svar1').value;
+    }
+    document.getElementById('streak-tekst').textContent = aktivDage + ' dage i træk';
+
+    }
+  // Skjul ALLE sider, ryd bordet fuldstændigt, hver gang vi skifter side: None - gør den usynlig
+
+  document.getElementById('side' + nummer).style.display = 'flex';
+  if (nummer === 35 && filosof) {  // Hvis vi går til side 35 OG der er en filosof med
+    const billede = document.getElementById('filosof-billede');
+    billede.src = filosof + '.webp';  // fx 'sartre' + '.webp' = 'sartre.webp'
+
+aktivFilosof = filosof;           // gem filosof
+aktivDage = (startXP / 50) + 1;  // beregn dag-nummer (150/50 = 3 + 1 = dag 4)
+
+    // NY: beregn og vis mangler-tekst
+const manglerXP = 350 - (startXP + 50);              // hvor mange XP mangler der?
+const navn = filosof === 'sartre' ? 'Sartre' : 'Heidegger';  // vælg det rigtige navn
+document.getElementById('mangler-tekst').textContent = 'Du mangler kun ' + manglerXP + ' XP for at låse ' + navn + '-badget op';
+
+   setTimeout(function() {
+    document.getElementById('xp-boks').style.display = 'none';  // skjul ⚡ +50 XP    
+    document.getElementById('xp-bar-container').style.display = 'block';
+  setTimeout(function() {
+    const slutXP = startXP + 50;                     // start + 50
+    const bredde = (slutXP / 350) * 100;             // beregn % til baren
+    document.getElementById('xp-fill').style.width = bredde + '%';
+
+    let taeller = startXP;                            // start tælleren her
+    const interval = setInterval(function() {
+        taeller++;
+        document.getElementById('xp-tekst').textContent = taeller + ' / 350 XP';
+        if (taeller >= slutXP) clearInterval(interval); // stop når færdig
+    }, 20);
+}, 100);
+    }, 1500);
+  }
+
+}  // ← funktionen lukker her
+  // Vis KUN den side vi vil hen til, fx 'side' + 2 = 'side2' - Block gør den synlig
+
+  // Notifikation animation
+    window.addEventListener('load', function() {
+    const notif = document.getElementById('notifikation');
+    setTimeout(function() { 
+        notif.classList.add('synlig');  // vis notifikationen
+        pingLyd();                      // spil ping-lyden
+    }, 3000);
+    setTimeout(function() { notif.classList.remove('synlig'); }, 7000);
+    });
+
+function pingLyd() {
+    const ctx = new AudioContext();          // musikstudie — selve lydmotoren
+    const oscillator = ctx.createOscillator(); // genererer selve tonen
+    const gainNode = ctx.createGain();       // styrer volumen
+    oscillator.connect(gainNode);            // tone → volumen
+    gainNode.connect(ctx.destination);       // volumen → højttaler
+    oscillator.frequency.value = 800;        // tonehøjde i Hz (800 = høj ping-lyd)
+    gainNode.gain.setValueAtTime(0.3, ctx.currentTime);                        // start ved 30% volumen
+    gainNode.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.4); // fade ud over 0.4 sek
+    oscillator.start(ctx.currentTime);       // start lyden nu
+    oscillator.stop(ctx.currentTime + 0.4); // stop efter 0.4 sekunder
+    }
+
+
+  // TimerK
+  let karriereTimerStartet = false;
+  let teknologiTimerStartet = false;  // NY variabel til teknologi
+
+  function startTimer(ringId, displayId, btnId, hintId) {
+      const TOTAL = 5 * 0;  // Her can man justere timerens længde / hvornår 'næste'-knappen låser op.
+      let remaining = TOTAL;
+      const circumference = 364.4;
+      const ring = document.getElementById(ringId);
+      const display = document.getElementById(displayId);
+      const btn = document.getElementById(btnId);
+      const hint = document.getElementById(hintId);
+
+      function fmt(s) {
+          const m = Math.floor(s / 60);
+          const sec = s % 60;
+          return m + ':' + String(sec).padStart(2, '0');
+      }
+
+      function tick() {
+          if (remaining <= 0) {
+              display.textContent = '0:00';
+              ring.setAttribute('stroke-dashoffset', circumference.toString());
+              btn.style.opacity = '1';
+              btn.style.pointerEvents = 'auto';
+              if (hint) hint.textContent = 'Klar til at fortsætte ✓';
+              return;
+          }
+          display.textContent = fmt(remaining);
+          const offset = circumference * (1 - remaining / TOTAL);
+          ring.setAttribute('stroke-dashoffset', offset.toString());
+          remaining--;
+          setTimeout(tick, 1000);
+      }
+
+      tick();
+  }
+
+  let sartreAnimationStartet = false;
+  let heideggerAnimationStartet = false;
+
+  function startSartreChat() {
+      if (sartreAnimationStartet) return;
+      sartreAnimationStartet = true;
+
+      const beskeder = ['sartre-msg1'];
+      const forsinkelse = [800];
+      const skrivetid  = [2000];
+
+      const typing = document.getElementById('sartre-typing');
+
+      beskeder.forEach(function(id, i) {
+          setTimeout(function() {
+              typing.style.display = 'flex';
+          }, forsinkelse[i]);
+
+          setTimeout(function() {
+              typing.style.display = 'none';
+              const el = document.getElementById(id);
+              el.style.display = 'flex';
+          }, forsinkelse[i] + skrivetid[i]);
+      });
+
+      const sidsteVises = forsinkelse[0] + skrivetid[0] + 400;
+      setTimeout(function() {
+          document.getElementById('sartre-knap').style.display = 'block';
+      }, sidsteVises);
+  }
+
+  function startHeideggerChat() {
+      if (heideggerAnimationStartet) return;
+      heideggerAnimationStartet = true;
+
+      const beskeder = ['heidegger-msg1'];
+      const forsinkelse = [800];
+      const skrivetid  = [2000];
+
+      const typing = document.getElementById('heidegger-typing');
+
+      beskeder.forEach(function(id, i) {
+          setTimeout(function() {
+              typing.style.display = 'flex';
+          }, forsinkelse[i]);
+
+          setTimeout(function() {
+              typing.style.display = 'none';
+              const el = document.getElementById(id);
+              el.style.display = 'flex';
+          }, forsinkelse[i] + skrivetid[i]);
+      });
+
+      const sidsteVises = forsinkelse[0] + skrivetid[0] + 400;
+      setTimeout(function() {
+          document.getElementById('heidegger-knap').style.display = 'block';
+      }, sidsteVises);
+  }
   </script>                       <!-- JavaScript slutter her -->
-
-  </body> <!-- lukker body -->
-
+	</body> <!-- lukker body -->
 </html> <!-- lukker hele siden -->
