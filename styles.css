@@ -386,3 +386,117 @@ textarea {
                 0 0 50px rgba(255,255,255,0.12);
     }
 }
+
+
+.badge-kategori {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.badge-kategori-titel {
+    font-size: 13px;
+    font-weight: bold;
+    color: #1C1A3A;
+    margin: 0;
+    letter-spacing: 0.04em;
+    font-family: Georgia, serif;
+}
+
+.badge-grid-ny {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.badge-slot {
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    width: 100%;
+}
+
+.badge-slot.tom {
+    background: rgba(83, 74, 183, 0.08);
+    border: 2px dashed rgba(83, 74, 183, 0.25);
+    border-radius: 50%;
+}
+
+.badge-progress-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.badge-progress-bar {
+    background: rgba(83, 74, 183, 0.15);
+    border-radius: 20px;
+    height: 8px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.badge-progress-fill {
+    background: #534AB7;
+    height: 100%;
+    border-radius: 20px;
+    transition: width 1s ease;
+}
+
+.badge-progress-tekst {
+    font-size: 10px;
+    color: #888780;
+    margin: 0;
+    font-family: Georgia, serif;
+}
+
+
+.badge-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    position: relative;
+}
+
+.badge-item .badge-progress-bar {
+    width: 100%;
+    height: 6px;
+    background: rgba(83, 74, 183, 0.15);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.badge-item .badge-progress-fill {
+    height: 100%;
+    background: #534AB7;
+    border-radius: 20px;
+    transition: width 1s ease;
+}
+
+.badge-item .badge-progress-tekst {
+    font-size: 9px;
+    color: #888780;
+    margin: 0;
+    text-align: center;
+}
+
+
+.badge-item[data-name]:hover::after {
+    content: attr(data-name);
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1C1A3A;
+    color: white;
+    font-size: 11px;
+    font-family: Georgia, serif;
+    padding: 4px 8px;
+    border-radius: 6px;
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 10;
+}
