@@ -9,11 +9,15 @@
   </head> <!-- head-sektionen slutter her -->
 
 	<body> <!-- Alt herinde vises på siderne -->
-    
+
         <!-- Musikken starter lydløs -->
     <audio id="baggrunds-musik" loop muted>
-    <source src="https://res.cloudinary.com/dlxyolpnd/video/upload/v1778592171/Bg-musik.mp3" type="audio/mpeg">
+    <source src="music.mp3" type="audio/mpeg">
     </audio>
+
+	<audio id="lydeffekt" loop muted>
+		<source src="fx.mp3" type="audio/mpeg">
+	</audio>
 	<!-- ========== SIDE 1: overblik ========== -->
 	<div class="telefon">
 
@@ -72,9 +76,9 @@
 			<!-- top-del -->
 			<div class="top-del" style="justify-content: center; gap: 14px; position: relative;">
 
-    <button onclick="skiftTilSide(1)" 
+    <button onclick="skiftTilSide(1)"
             style="position: absolute; top: 10px; left: 10px;
-                   background: none; border: none; color: white; 
+                   background: none; border: none; color: white;
                    font-size: 20px; cursor: pointer;">←</button>
 
     <p class="top-del-titel">Tid til at reflektere</p>
@@ -165,9 +169,9 @@
 		<div class="side2" id="side31">
 			<!-- top-del -->
 			<div class="top-del" style="justify-content: center; gap: 14px; position: relative;">
-    <button onclick="skiftTilSide(1)" 
+    <button onclick="skiftTilSide(1)"
             style="position: absolute; top: 10px; left: 10px;
-                   background: none; border: none; color: white; 
+                   background: none; border: none; color: white;
                    font-size: 20px; cursor: pointer;">←</button>
         <p class="top-del-titel">Tid til at reflektere</p>
 
@@ -258,7 +262,7 @@
 <div class="side2" id="side35">
   <div class="top-del" style="min-height: 560px; justify-content: center; gap: 16px;">
     <div id="konfetti">🎊 🎉 🎊</div>
-   <p id="mangler-tekst" style="color: rgba(255,255,255,0.6); 
+   <p id="mangler-tekst" style="color: rgba(255,255,255,0.6);
    font-size: 13px; text-align: center; margin: 0;">
 </p>
 
@@ -280,23 +284,23 @@
      animation: filosofGlow 2.8s ease-in-out infinite;
      "
 	  alt="Billed af filosof">
-    
+
     <div id="xp-boks" style="background: #534AB7; border-radius: 20px;
-        padding: 10px 24px; font-size: 22px; 
+        padding: 10px 24px; font-size: 22px;
         color: white; font-weight: bold;">
       ⚡ +50 XP
     </div>
     <!-- XP progress bar -->
-    <div id="xp-bar-container" style="display: none; width: 100%; 
-          background: rgba(255,255,255,0.15); 
+    <div id="xp-bar-container" style="display: none; width: 100%;
+          background: rgba(255,255,255,0.15);
           border-radius: 20px; height: 36px; position: relative;">
          <!-- den fyldte del -->
         <div id="xp-fill" style="width: 0; background: #534AB7;
          border-radius: 20px; height: 100%; transition: width 1s ease;">
         </div>
         <!-- tekst midt i -->
-    <p id="xp-tekst" style="position: absolute; top: 50%; left: 50%; 
-       transform: translate(-50%, -50%); 
+    <p id="xp-tekst" style="position: absolute; top: 50%; left: 50%;
+       transform: translate(-50%, -50%);
        color: white; font-size: 13px; margin: 0;">150 / 350 XP</p>
 
 
@@ -472,6 +476,8 @@
 
 function skiftTilSide(nummer, filosof, startXP)                                               // Lav en funktion der hedder "skiftTilSide" "nummer" er det tal vi sender med — fx skiftTilSide(2) sender tallet 2
 {
+    const musik = document.getElementById('baggrunds-musik');
+    const lydeffekt = document.getElementById('lydeffekt');
   document.getElementById('side1').style.display = 'none';
   document.getElementById('side21').style.display = 'none';
   document.getElementById('side22').style.display = 'none';
@@ -482,17 +488,17 @@ function skiftTilSide(nummer, filosof, startXP)                                 
   document.getElementById('side6').style.display = 'none';
 
 if (nummer === 21 || nummer === 31) {   // når man klikker et rejsekort
-    const musik = document.getElementById('baggrunds-musik');
+
     musik.muted = false;  // slå lyden til
     musik.play();         // start afspilning
 }
-    
+
   if (nummer === 22) {
         startSartreChat(); // starter SartreChat funktionen når den går til side 22
         sartreSamtaler += 1;
         karriereDage += 1;
         aktivRejse = 'Find din karrierevej';
-        
+
     }
 
     if (nummer === 32) {
@@ -512,15 +518,23 @@ if (nummer === 21 || nummer === 31) {   // når man klikker et rejsekort
     teknologiTimerStartet = true;
     startTimer('timer-ring2', 'timer-display2', 'teknologi-knap', 'timer-hint2');
 }
+
+    if (nummer === 35) {
+        musik.pause();
+        lydeffekt.muted = false;  // slå lyden til
+        lydeffekt.play();         // start afspilning
+    }
+
     if (nummer === 5) {
         document.getElementById('journey-title').textContent = aktivRejse;
 
+
     document.getElementById('side5-bar').style.width = (aktivDage / 7 * 100) + '%';
     document.getElementById('side5-dage').textContent = aktivDage + '/7 dage fuldført';
-      
+
     // sæt filosof-billede
     document.getElementById('side5-filosof').src = aktivFilosof + '.webp';
-    
+
     // hent brugerens svar fra den rigtige tekstboks
     if (aktivFilosof === 'sartre') {
         document.getElementById('vis-svar').textContent = document.getElementById('karriere-svar1').value;
@@ -562,7 +576,7 @@ const navn = filosof === 'sartre' ? 'Sartre' : 'Heidegger';  // vælg det rigtig
 document.getElementById('mangler-tekst').textContent = 'Du mangler kun ' + manglerXP + ' XP for at låse ' + navn + '-badget op';
 
    setTimeout(function() {
-    document.getElementById('xp-boks').style.display = 'none';  // skjul ⚡ +50 XP    
+    document.getElementById('xp-boks').style.display = 'none';  // skjul ⚡ +50 XP
     document.getElementById('xp-bar-container').style.display = 'block';
   setTimeout(function() {
     const slutXP = startXP + 50;                     // start + 50
@@ -585,7 +599,7 @@ document.getElementById('mangler-tekst').textContent = 'Du mangler kun ' + mangl
   // Notifikation animation
     window.addEventListener('load', function() {
     const notif = document.getElementById('notifikation');
-    setTimeout(function() { 
+    setTimeout(function() {
         notif.classList.add('synlig');  // vis notifikationen
         pingLyd();                      // spil ping-lyden
     }, 3000);
