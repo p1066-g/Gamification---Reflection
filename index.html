@@ -18,11 +18,10 @@
 	<audio id="lydeffekt" loop muted>
 		<source src="fx.mp3" type="audio/mpeg">
 	</audio>
-
 	<!-- ========== SIDE 1: overblik ========== -->
 	<div class="telefon">
-	
-	<!-- ===== DISCLAIMER MODAL ===== -->
+
+		<!-- ===== DISCLAIMER MODAL ===== -->
 	<div id="disclaimer">
     	<div id="disclaimer-kort">        <!-- kortet starter -->
 			<img src="athena.webp" class="disclaimer-athena" alt="Athena">
@@ -53,7 +52,6 @@
 
     </div> <!-- kort slutter -->
 </div> <!-- disclaimer slutter -->
-		
 
 		<!-- Notifikationsboks -->
 		<div class="notifikation" id="notifikation">
@@ -522,18 +520,7 @@ function skiftTilSide(nummer, filosof, startXP)                                 
   document.getElementById('side5').style.display = 'none';
   document.getElementById('side6').style.display = 'none';
 
-  if (nummer === 1) {
-    const notif = document.getElementById('notifikation');
-    setTimeout(function() {
-        notif.classList.add('synlig');  // vis notifikationen
-        pingLyd();                      // spil ping-lyden
-    }, 1000);                           // ← 1000 = 1 sekund
-    setTimeout(function() { 
-        notif.classList.remove('synlig'); // skjul igen
-    }, 6000);
-}
-
-  if (nummer === 21 || nummer === 31) {   // når man klikker et rejsekort
+if (nummer === 21 || nummer === 31) {   // når man klikker et rejsekort
 
     musik.muted = false;  // slå lyden til
     musik.play();         // start afspilning
@@ -642,6 +629,15 @@ document.getElementById('mangler-tekst').textContent = 'Du mangler kun ' + mangl
 }  // ← funktionen lukker her
   // Vis KUN den side vi vil hen til, fx 'side' + 2 = 'side2' - Block gør den synlig
 
+  // Notifikation animation
+    window.addEventListener('load', function() {
+    const notif = document.getElementById('notifikation');
+    setTimeout(function() {
+        notif.classList.add('synlig');  // vis notifikationen
+        pingLyd();                      // spil ping-lyden
+    }, 3000);
+    setTimeout(function() { notif.classList.remove('synlig'); }, 7000);
+    });
 
 function pingLyd() {
     const ctx = new AudioContext();          // musikstudie — selve lydmotoren
