@@ -1,0 +1,678 @@
+body {
+    background: #f0e6f0; /* sætter baggrundsfarve */
+    font-family: Georgia, serif; /* sætter skrifttype */
+    display: flex; /* sætter layout til "flexbox" — gør det nemt at centrere indholdet */
+    justify-content: center; /* centrer vandret */
+    align-items: center; /* centrer lodret */
+    min-height: 100vh; /* giv siden en mindste-højde på hele skærmhøjden */
+}
+
+.telefon { /* punktum foran = "find alt med class='telefon'" .navn = find class */
+    background: #1a1a1a; /* mørk baggrund — næsten sort */
+    width: 320px; /* bredde — ca. som en mobilskærm */
+    border-radius: 40px; /* runde hjørner — jo højere tal, jo rundere */
+    padding: 12px; /* luft mellem kanten og indholdet indeni */
+    min-height: 460px; /* NY: giv boksen en mindste-højde */
+    position: relative; /* Gør at vi kan lave rum over telefonen til at gemme pop-down notifikationen */
+    overflow: hidden; /* Skjuler indhold der stikker ud over telefonens kanter */
+}
+
+.skaerm {           /* tilføjes her — efter .telefon */
+    background: rgb(255, 255, 255); /* hvid baggrund */
+    border-radius: 30px; /* runde hjørner — lidt mindre end telefonen for at skabe en "skærm" effekt */
+    overflow: hidden;   /* skjuler indhold, der overskrider boksen */
+    min-height: 460px; /* NY: giv skærmen samme mindste-højde som telefonen for at sikre den fylder hele pladsen */
+    width: 100%;     /* NY: lad skærmen fylde hele bredden af telefonen, så den automatisk tilpasser sig telefonens bredde */
+    display: flex;
+    flex-direction: column;
+}
+
+.top-del {
+    background: #1C1A3A;  /* mørk lilla — næsten sort */
+    padding: 10px 20px;   /* luft indeni — 24px top/bund, 20px venstre/højre */
+    display: flex;          /* gør jeg kan rykke rundt på elementer */
+    flex-direction: column; /* NY: stable elementer lodret */
+    align-items: center;    /* NY: centrer vandret */
+}
+
+.bund-del {
+    background: radial-gradient(ellipse at 20% 30%, rgba(200, 195, 220, 0.6) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 70%, rgba(180, 175, 210, 0.5) 0%, transparent 50%),
+    radial-gradient(ellipse at 60% 20%, rgba(230, 225, 240, 0.4) 0%, transparent 40%),
+    linear-gradient(135deg, #f5f3f7 0%, #ede9f2 50%, #f8f6fa 100%);
+    padding: 20px;        /* luft indeni */
+    display: flex;          /* NY: tænd for arrangøren */
+    flex-direction: column; /* NY: stable elementer lodret */
+    gap: 10px;
+    flex: 1;
+}
+
+#disclaimer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#disclaimer-kort {
+    background: rgb(132, 184, 252);
+    border-radius: 12px;
+    padding: 24px;
+    width: 260px;
+    text-align: center;
+}
+
+.disclaimer-knap {
+    background: #8BC34A;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    width: 100%;
+    font-size: 15px;
+    margin-top: 12px;
+    cursor: pointer;
+}
+
+.disclaimer-boks {
+    background: #ba92e9;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 13px;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.disclaimer-badge {
+    border-radius: 50%;
+    object-fit: cover;
+    vertical-align: middle;
+    box-shadow: 0 0 8px rgba(255, 150, 0, 0.8);
+}
+
+.glowing {
+    text-shadow: 0 0 8px rgba(255, 150, 0, 0.8);
+    font-size: 16px;
+}
+
+.disclaimer-athena {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+    margin: 0 auto 12px;
+    border: 2px solid rgba(255,255,255,0.75);
+    box-shadow: 0 0 12px rgba(255,255,255,0.55),
+                0 0 30px rgba(210,220,255,0.35);
+}
+
+#side12 img {
+    width: 80px;        /* lille størrelse */
+    height: 80px;       /* samme som bredde = perfekt cirkel */
+    border-radius: 50%; /* gør den rund */
+    object-fit: cover;  /* zoom ind så billedet fylder */
+    display: block;
+    margin: 12px auto;  /* centrer den */
+}
+
+.notifikation {
+    position: absolute;
+    top: -80px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(40, 36, 80, 0.97);
+    border-radius: 14px;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 82%;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+    transition: top 0.5s cubic-bezier(0.34, 1.2, 0.64, 1);
+    z-index: 100;
+}
+
+.notifikation.synlig {
+    top: 12px;
+}
+
+.notifikation p {
+    color: white;
+    margin: 0;
+    font-size: 13px;
+}
+
+.notifikation .notif-ikon {
+    font-size: 22px;
+    flex-shrink: 0;
+}
+
+.progress-bar {
+    background: rgba(83,74,183,0.15); /* gennemsigtig lilla baggrund */
+    border-radius: 20px;              /* runde hjørner */
+    height: 24px;                     /* tykkelse på stregen */
+    width: 100%;                   /* fyld hele bredden */
+    position: relative;             /* gør det muligt at placere teksten ovenpå stregen */
+    overflow: hidden;               /* skjul det fyld, der stikker ud over kanten */
+    margin-top: 8px;
+}
+
+.progress-fill {
+    background: #534AB7;
+    height: 100%;
+    border-radius: 20px;
+    width: 43%;
+}
+
+.progress-bar span {
+    position: absolute;                 /* løft teksten ud af den normale rækkefølge og placer den præcist oven på progress-bar — muligt fordi progress-bar har position: relative. Normalt placerer HTML elementer sig selv efter hinanden — ligesom tekst på en linje. Det kalder man "normal flow".  */
+    top: 50%;                            /* start ved midten af baren, målt fra toppen */
+    left: 50%;                          /* start ved midten af baren, målt fra venstre */
+    transform: translate(-50%, -50%);    /* centrer teksten perfekt i midten af stregen */
+    font-size: 11px;
+    color:black;
+}
+
+.top-del-titel{
+    color: #AFA9EC;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.rejse-kort {
+    flex: 0 0 100%;
+    width: 95%;
+    background: white;
+    border-radius: 16px;
+    border: 1px solid #e8e6f0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    overflow: hidden;
+    flex-direction: column;
+    scroll-snap-align: center;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.rejse-kort:hover {
+    transform: scale(1.04);
+    box-shadow: 0 0 10px 6px rgba(255, 255, 255, 0.9),
+    0 4px 16px rgba(0,0,0,0.10);
+    cursor: pointer;
+}
+
+.career {
+    overflow-y: scroll;           /* tillad vandret scrolling */
+    align-items: center;
+    flex-direction: column;
+    padding: 18px 16px 12px 16px;
+    display: flex;          /* side om side */
+    gap: 20px;             /* afstand mellem søjle, ugle, søjle */
+    max-height: 300px;
+    margin: 0 -16px;
+    background: radial-gradient(ellipse at 20% 30%, rgba(200, 195, 220, 0.6) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 70%, rgba(180, 175, 210, 0.5) 0%, transparent 50%),
+    radial-gradient(ellipse at 60% 20%, rgba(230, 225, 240, 0.4) 0%, transparent 40%),
+    linear-gradient(135deg, #f5f3f7 0%, #ede9f2 50%, #f8f6fa 100%);
+}
+
+.career img {
+    width: 100%;  /* styrer selve billedet */
+    height: 150px;
+    object-fit: cover;   /* zoom ind på billedet til det fylder — klip kanter væk */
+}
+
+.rejse-kort p {
+    text-align: center;  /* centrer tekst inde i hvert kort */
+    color:black;
+    display: block;
+}
+
+.kort-titel {
+    margin: 0 0 8px;
+    color: #1C1A3A;
+    padding: 14px;         /* luft indeni */
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.spørgsmål {
+    margin: 0 0 8px;
+    color: #1C1A3A;
+    text-shadow: 2px 2px 2px darkgray;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.underspørgsmål {
+    margin: 0 0 8px;
+    color: #1C1A3A;
+    font-size: 12px;
+    text-align: center;
+    font-family: Baskerville, serif;
+}
+
+.knap {
+    margin-top: auto; /* skub knappen ned mod bunden */
+    background: #534AB7;  /* lilla baggrund */
+    color: #EEEDFE;        /* lys tekst */
+    border: none;          /* fjern browserens standard-kant */
+    border-radius: 12px;   /* runde hjørner */
+    padding: 14px;         /* luft indeni */
+    font-size: 15px;       /* tekststørrelse */
+    width: 100%;           /* fyld hele bredden */
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.knap:hover {
+    transform: scale(1.04);
+    box-shadow: 0 0 10px 6px rgba(83, 74, 183, 0.4),
+    0 4px 16px rgba(0,0,0,0.10);
+    border-color: white;
+    cursor: pointer;
+}
+
+.dag-info p {
+    margin: 0;          /* fjern automatisk afstand */
+    color: #888780;     /* grå tekst */
+    font-size: 13px;    /* lille tekst */
+}
+
+.side2 {
+    display: none; /* skjult som standard */
+    color: white;
+    border-radius: 30px;  /* runde hjørner som .skaerm */
+    overflow-y: auto;
+    min-height: 560px;    /* samme højde som side 1 */
+    width: 100%;
+    flex-direction: column;
+}
+
+textarea {
+    width: 100%;        /* fyld hele bredden */
+    height: 150px;      /* højden — prøv at ændre tallet */
+    box-sizing: border-box; /* padding tæller med i bredden - uden den ville tekstfeltet stikke ud over telefonens kanter fordi padding lægges ovenpå width: 100% */
+    font-family: Georgia, serif; /* matches the rest of the page */
+    font-size: 10px;
+    padding: 10px;
+}
+
+.ild {
+    font-size: 40px;
+}
+
+
+.citat {
+    font-style: italic; /* kursiv tekst */
+    color: #5F5E5A;     /* grå farve */
+}
+
+.card {
+    background: white;
+    border-radius: 8px;
+    padding: 10px 12px;
+    border-left: 3px solid #534AB7;
+    margin-bottom: 8px;
+}
+
+.q {
+    font-size: 11px;
+    color: #888780;
+    margin: 0 0 4px;
+}
+
+.a {
+    font-size: 13px;
+    color: #2C2C2A;
+    font-style: italic;
+    margin: 0;
+    word-wrap: break-word;  /* NY: bryd lange ord/sætninger */
+    white-space: normal;    /* NY: tillad tekstombrydning */
+}
+
+#side5 .bund-del {
+    overflow-y: auto;
+    flex: 1;
+    color: black; /* kun tekst i bund-del på side 5 */
+
+}
+
+.chat-boble {
+    background: white;
+    border-radius: 0 16px 16px 16px;
+    padding: 14px 16px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    font-size: 15px;
+    line-height: 1.6;
+    color: #1a1a2e;
+    max-width: 280px;
+}
+
+.typing-dot {
+    width: 8px;
+    height: 8px;
+    background: #aaa;
+    border-radius: 50%;
+    animation: typing-bounce 1.2s infinite ease-in-out;
+}
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typing-bounce {
+    0%, 60%, 100% { transform: translateY(0); }
+    30%            { transform: translateY(-6px); }
+}
+
+ .locked-image {
+          position: relative;
+          width: 100px;
+          aspect-ratio: 1 / 1;
+          border-radius: 50%;
+          overflow: hidden;
+          display: flex;
+     justify-content: center;
+     align-items: center;
+     transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      }
+
+.locked-image:hover {
+    transform: scale(1.04);
+    box-shadow: 0 0 10px 6px rgba(255, 255, 255, 0.9),
+    0 4px 16px rgba(0,0,0,0.10);
+    border-color: white;
+    cursor: pointer;
+}
+
+      .locked-image img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+
+          /* Grey out image */
+          filter: grayscale(100%) brightness(0.6);
+      }
+
+      .locked-image::after {
+          content: "🔒";
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+
+          font-size: 80%;
+
+          /* Greyed-out lock */
+          filter: grayscale(100%);
+          opacity: 0.85;
+
+          text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+      }
+
+.badge-grid {
+    display: grid;
+
+    /* Creates responsive columns */
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+
+    gap: 16px;
+
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+@keyframes filosofGlow {
+    0% {
+        transform: scale(1);
+        box-shadow:
+                0 0 12px rgba(255,255,255,0.45),
+                0 0 28px rgba(210,220,255,0.25),
+                0 0 50px rgba(255,255,255,0.12);
+    }
+
+    50% {
+        transform: scale(1.03);
+        box-shadow:
+                0 0 18px rgba(255,255,255,0.75),
+                0 0 42px rgba(220,230,255,0.45),
+                0 0 80px rgba(255,255,255,0.2);
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow:
+                0 0 12px rgba(255,255,255,0.45),
+                0 0 28px rgba(210,220,255,0.25),
+                0 0 50px rgba(255,255,255,0.12);
+    }
+}
+
+
+.badge-kategori {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.badge-kategori-titel {
+    font-size: 13px;
+    font-weight: bold;
+    color: #1C1A3A;
+    margin: 0;
+    letter-spacing: 0.04em;
+    font-family: Georgia, serif;
+}
+
+.badge-grid-ny {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.badge-slot {
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    width: 100%;
+}
+
+.badge-slot.tom {
+    background: rgba(83, 74, 183, 0.08);
+    border: 2px dashed rgba(83, 74, 183, 0.25);
+    border-radius: 50%;
+}
+
+.badge-progress-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.badge-progress-bar {
+    background: rgba(83, 74, 183, 0.15);
+    border-radius: 20px;
+    height: 8px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.badge-progress-fill {
+    background: #534AB7;
+    height: 100%;
+    border-radius: 20px;
+    transition: width 1s ease;
+}
+
+.badge-progress-tekst {
+    font-size: 10px;
+    color: #888780;
+    margin: 0;
+    font-family: Georgia, serif;
+}
+
+
+.badge-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    position: relative;
+}
+
+.badge-item .badge-progress-bar {
+    width: 100%;
+    height: 6px;
+    background: rgba(83, 74, 183, 0.15);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.badge-item .badge-progress-fill {
+    height: 100%;
+    background: #534AB7;
+    border-radius: 20px;
+    transition: width 1s ease;
+}
+
+.badge-item .badge-progress-tekst {
+    font-size: 9px;
+    color: #888780;
+    margin: 0;
+    text-align: center;
+}
+
+
+.badge-item[data-name]:hover::after {
+    content: attr(data-name);
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1C1A3A;
+    color: white;
+    font-size: 11px;
+    font-family: Georgia, serif;
+    padding: 4px 8px;
+    border-radius: 6px;
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.praestations-kort {
+    background: linear-gradient(135deg, rgba(83,74,183,0.12) 0%, rgba(175,169,236,0.06) 100%);
+    border: 1px solid rgba(175,169,236,0.2);
+    border-radius: 16px;
+    padding: 12px 14px;
+    width: auto;              /* ← let margins control the width */
+    margin: -10px -14px 4px -14px;  /* ← cancel bund-del's 20px padding on left/right, pull up slightly on top */
+    border-radius: 0 0 16px 16px;   /* ← flat top since it goes edge-to-edge */
+    box-shadow: 0 2px 8px rgba(83,74,183,0.1);
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.praestations-titel {
+    color: #6B63A8;   /* softer, less intense purple */
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin: 0 0 10px 0;
+}
+
+.praestations-række {
+    display: flex;
+    gap: 8px;
+    overflow: hidden;          /* ADD THIS */
+    min-width: 0;              /* ADD THIS */
+}
+
+.praestations-boks {
+    border-radius: 12px;
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.streak-boks {
+    background: rgba(83,74,183,0.12);   /* was 0.4 */
+    border: 1px solid rgba(175,169,236,0.2);  /* was 0.3 */
+    flex: 0 0 auto;
+}
+
+.streak-boks {
+    background: rgba(83,74,183,0.4);
+    border: 1px solid rgba(175,169,236,0.3);
+    flex: 0 0 auto;
+    min-width: 50px;
+    max-width: 50px;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+}
+.praestations-label {
+    font-size: 9px;
+    color: rgba(100,90,160,0.9);   /* darker, readable */
+    margin: 0 0 2px 0;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.praestations-værdi {
+    font-size: 15px;
+    font-weight: bold;
+    color: #1C1A3A;
+    margin: 0;
+}
+
+.praestations-rejse {
+    font-size: 12px;
+    font-weight: bold;
+    color: #1C1A3A;
+    margin: 0 0 4px 0;
+    white-space: normal;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.praestations-bar {
+    background: rgba(255,255,255,0.15);
+    border-radius: 20px;
+    height: 5px;
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 3px;
+}
+
+.praestations-fill {
+    background: #AFA9EC;
+    height: 100%;
+    border-radius: 20px;
+    transition: width 0.8s ease;
+}
+
+.praestations-dage {
+    color: rgba(80,70,140,0.85);
+    font-size: 8px;
+    margin: 0;
+}
+
+.seneste-boks {
+    flex: 1 1 0;               /* takes remaining space but can shrink */
+    min-width: 0;              /* allows text truncation to work */
+}
