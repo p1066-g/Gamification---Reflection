@@ -18,8 +18,42 @@
 	<audio id="lydeffekt" loop muted>
 		<source src="fx.mp3" type="audio/mpeg">
 	</audio>
+
 	<!-- ========== SIDE 1: overblik ========== -->
 	<div class="telefon">
+	
+	<!-- ===== DISCLAIMER MODAL ===== -->
+	<div id="disclaimer">
+    	<div id="disclaimer-kort">        <!-- kortet starter -->
+			<img src="athena.webp" class="disclaimer-athena" alt="Athena">
+        	<h2>Vi hjælper dig!</h2>
+        	<p>Forskningen viser at det er svært at holde motivationen 
+			over længere periode - selv med mål man selv har sat for sig. 
+			Vi vil derfor hjælpe dig med at nå dine mål:</p>
+        	<p><strong>Notifikationer</strong></p>
+        	<div class="disclaimer-boks"> <!-- boks 1 -->
+            🔔 Husk at udføre din daglige refleksionsrejse!
+        	</div>                         <!-- boks 1 slutter -->
+
+        	<p><strong>Streaks / badges / xp</strong></p>
+        	<div class="disclaimer-boks"> <!-- boks 2 -->
+            <span class=glowing>🔥</span> 2/7 dage &nbsp; 
+			<img src="sartre.webp" class="disclaimer-badge" style="width:24px; height:24px;"> 
+			<span class=glowing>⚡</span> 50 xp &nbsp; 
+        	</div>                         <!-- boks 2 slutter -->
+
+    	<!-- afkrydsningsfelt -->
+        <div style="display: flex; align-items: center; gap: 8px;">
+            <input type="checkbox" id="vis-ikke-igen">
+            <label for="vis-ikke-igen">vis ikke denne besked igen</label>
+        </div>
+
+        <!-- knap -->
+        <button onclick="skiftTilSide(1)" class="disclaimer-knap">Forstået!</button>
+
+    </div> <!-- kort slutter -->
+</div> <!-- disclaimer slutter -->
+		
 
 		<!-- Notifikationsboks -->
 		<div class="notifikation" id="notifikation">
@@ -478,6 +512,7 @@ function skiftTilSide(nummer, filosof, startXP)                                 
 {
     const musik = document.getElementById('baggrunds-musik');
     const lydeffekt = document.getElementById('lydeffekt');
+  document.getElementById('disclaimer').style.display = 'none';
   document.getElementById('side1').style.display = 'none';
   document.getElementById('side21').style.display = 'none';
   document.getElementById('side22').style.display = 'none';
@@ -487,7 +522,18 @@ function skiftTilSide(nummer, filosof, startXP)                                 
   document.getElementById('side5').style.display = 'none';
   document.getElementById('side6').style.display = 'none';
 
-if (nummer === 21 || nummer === 31) {   // når man klikker et rejsekort
+  if (nummer === 1) {
+    const notif = document.getElementById('notifikation');
+    setTimeout(function() {
+        notif.classList.add('synlig');  // vis notifikationen
+        pingLyd();                      // spil ping-lyden
+    }, 1000);                           // ← 1000 = 1 sekund
+    setTimeout(function() { 
+        notif.classList.remove('synlig'); // skjul igen
+    }, 6000);
+}
+
+  if (nummer === 21 || nummer === 31) {   // når man klikker et rejsekort
 
     musik.muted = false;  // slå lyden til
     musik.play();         // start afspilning
@@ -596,15 +642,6 @@ document.getElementById('mangler-tekst').textContent = 'Du mangler kun ' + mangl
 }  // ← funktionen lukker her
   // Vis KUN den side vi vil hen til, fx 'side' + 2 = 'side2' - Block gør den synlig
 
-  // Notifikation animation
-    window.addEventListener('load', function() {
-    const notif = document.getElementById('notifikation');
-    setTimeout(function() {
-        notif.classList.add('synlig');  // vis notifikationen
-        pingLyd();                      // spil ping-lyden
-    }, 3000);
-    setTimeout(function() { notif.classList.remove('synlig'); }, 7000);
-    });
 
 function pingLyd() {
     const ctx = new AudioContext();          // musikstudie — selve lydmotoren
