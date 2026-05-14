@@ -17,6 +17,75 @@ body {
     overflow: hidden; /* Skjuler indhold der stikker ud over telefonens kanter */
 }
 
+#disclaimer {
+    position: absolute;      /* gør at det kan placeres oven på telefonen */
+    top: 0;               /* start fra toppen */
+    left: 0;              /* start fra venstre */
+    width: 100%;          /* dæk hele bredden */
+    height: 100%;         /* dæk hele højden */
+    background: rgba(0, 0, 0, 0.5); /* halvgennemsigtig sort */
+    z-index: 999;         /* læg den oven på ALT andet */
+    display: flex;    /* gør det til en flex-container */
+    justify-content: center; /* centrer vandret */
+    align-items: center;  /* centrer lodret */  
+}
+
+#disclaimer-kort {
+    background: rgb(132, 184, 252);     /* hvid baggrund */
+    border-radius: 12px;   /* runde hjørner */
+    padding: 24px;         /* luft indeni */
+    width: 260px;          /* bredde på kortet */
+    text-align: center;    /* centrer indholdet */
+}
+
+.disclaimer-knap {
+    background: #8BC34A;   /* grøn farve */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    width: 100%;
+    font-size: 15px;
+    margin-top: 12px;
+    cursor: pointer;
+}
+.disclaimer-boks {
+    background: #ba92e9; /* lys grå baggrund */
+    border-radius: 8px;    /* runde hjørner */
+    padding: 10px 14px;    /* luft indeni */
+    font-size: 13px;       /* lille tekst */
+    margin-bottom: 8px;    /* afstand til næste element */
+    text-align: center;    /* centrer indholdet */
+}
+
+.disclaimer-badge {
+    width: 24px;        /* lille størrelse */
+    height: 24px;
+    border-radius: 50%; /* gør den rund */
+    object-fit: cover;  /* zoom ind så det fylder */
+    vertical-align: middle; /* ligner teksten lodret */
+    box-shadow: 0 0 8px rgba(255, 150, 0, 0.8); /* orange glød */
+}
+
+.glowing {
+    text-shadow: 0 0 8px rgba(255, 150, 0, 0.8); /* orange glød */
+    font-size: 16px;
+}
+
+.disclaimer-athena {
+    width: 80px;       /* størrelse */
+    height: 80px;
+    border-radius: 50%; /* gør den rund */
+    object-fit: cover;  /* zoom ind så det fylder */
+    object-position: top;  /* vis toppen af billedet — ansigtet */
+    display: block;     /* gør at margin: auto virker */
+    margin: 0 auto 12px; /* centrer vandret + luft nedenunder */
+    border: 2px solid rgba(255,255,255,0.75);  /* hvid kant */
+    box-shadow:
+        0 0 12px rgba(255,255,255,0.55),
+        0 0 30px rgba(210,220,255,0.35);        /* blå/hvid glød */
+}
+
 .skaerm {           /* tilføjes her — efter .telefon */
     background: rgb(255, 255, 255); /* hvid baggrund */
     border-radius: 30px; /* runde hjørner — lidt mindre end telefonen for at skabe en "skærm" effekt */
@@ -113,12 +182,6 @@ body {
     margin: 0;
 }
 
-.ugle {
-    font-size: 30px;   /* stor ugle */
-    text-align: center; /* centrer den */
-    margin: 0;          /* fjern automatisk afstand */
-}
-
 .rejse-kort {
     flex: 0 0 100%;
     width: 95%;
@@ -154,12 +217,11 @@ body {
     linear-gradient(135deg, #f5f3f7 0%, #ede9f2 50%, #f8f6fa 100%);
 }
 
-.career img {
-    width: 100%;  /* styrer selve billedet */
+.career {  /* ← kun billeder inde i rejse-kort */
+    width: 100%;
     height: 150px;
-    object-fit: cover;   /* zoom ind på billedet til det fylder — klip kanter væk */
+    object-fit: cover;
 }
-
 .rejse-kort p {
     text-align: center;  /* centrer tekst inde i hvert kort */
     color:black;
