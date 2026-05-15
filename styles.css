@@ -114,6 +114,96 @@ body {
                 0 0 30px rgba(210,220,255,0.35);
 }
 
+#side12 img {
+    width: 80px;        /* lille størrelse */
+    height: 80px;       /* samme som bredde = perfekt cirkel */
+    border-radius: 50%; /* gør den rund */
+    object-fit: cover;  /* zoom ind så billedet fylder */
+    display: block;
+    margin: 12px auto;  /* centrer den */
+}
+
+#side12 .rejse-kort:hover {
+    transform: none;
+    box-shadow: none;
+    cursor: default;
+}
+
+/* Rammen om ét præstationskort */
+.praestations-kort-ny {
+    background: white;
+    border-radius: 16px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column; /* titel og knap stables lodret */
+    gap: 10px;
+}
+
+/* Rækken med de 3 cirkler — side om side */
+.tre-cirkler {
+    display: flex;        /* tænd for arrangøren */
+    justify-content: space-around; /* fordel jævnt */
+}
+
+/* Én cirkel-boks — indhold stables lodret */
+.cirkel-boks {
+    display: flex;
+    flex-direction: column;
+    align-items: center;  /* centrer vandret */
+    gap: 6px;
+    width: 80px;          /* samme bredde på alle 3 */
+    transition: transform 0.25s ease; /* blød animation */
+}
+.cirkel-boks:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+/* Selve det runde billede */
+.cirkel-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;   /* gør den rund */
+    object-fit: cover;
+}
+
+/* Den lille progress bar under cirklen */
+.lille-bar {
+    background: rgba(83,74,183,0.15);
+    border-radius: 20px;
+    height: 6px;
+    width: 100%;          /* følger cirkel-boks bredden */
+    overflow: hidden;
+}
+
+.lille-fill {
+    background: #534AB7;
+    height: 100%;
+    border-radius: 20px;
+}
+
+/* Teksten under baren */
+.cirkel-tekst {
+    font-size: 10px;
+    color: #888780;
+    margin: 0;
+    text-align: center;
+}
+
+/* Se samtaler knappen */
+.se-samtaler-knap {
+    background: #534AB7;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 10px;
+    width: 100%;
+    font-size: 13px;
+    cursor: default;      /* ingen hånd-cursor — knappen virker ikke endnu */
+}
+
+
+
 .notifikation {
     position: absolute;
     top: -80px;
@@ -215,7 +305,7 @@ body {
     linear-gradient(135deg, #f5f3f7 0%, #ede9f2 50%, #f8f6fa 100%);
 }
 
-.career img {
+.career img,  .rejse-kort img{
     width: 100%;  /* styrer selve billedet */
     height: 150px;
     object-fit: cover;   /* zoom ind på billedet til det fylder — klip kanter væk */
@@ -264,7 +354,9 @@ body {
     transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
-.knap:hover {
+.knap:hover,
+.se-samtaler-knap:hover,
+.praestations-kort:hover{
     transform: scale(1.04);
     box-shadow: 0 0 10px 6px rgba(83, 74, 183, 0.4),
     0 4px 16px rgba(0,0,0,0.10);
@@ -573,6 +665,7 @@ textarea {
     box-shadow: 0 2px 8px rgba(83,74,183,0.1);
     box-sizing: border-box;
     overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .praestations-titel {
@@ -666,4 +759,37 @@ textarea {
 .seneste-boks {
     flex: 1 1 0;               /* takes remaining space but can shrink */
     min-width: 0;              /* allows text truncation to work */
+}
+
+
+.filosof-header {
+    display: flex;      /* side om side */
+    gap: 12px;          /* luft mellem billede og tekst */
+    align-items: flex-start; 
+}
+
+.filosof-img {
+    width: 70px;        /* mindre billede */
+    height: 70px;
+    border-radius: 50%; /* rundt */
+    object-fit: cover;
+}
+
+.filosof-info p {
+    font-size: 11px;  /* lille tekst */
+    color: black;
+    margin: 0 0 4px 0; /* lidt luft mellem linjerne */
+    text-align: left;
+}
+.filosof-top {
+    background: #1C1A3A;
+    margin: -10px -12px 10px -12px; /* trækker sig ud til kortets kanter */
+    padding: 10px 12px;
+    border-radius: 6px 6px 0 0;     /* kun øverste hjørner runde */
+}
+
+#side20 .rejse-kort:hover {
+    transform: none;
+    box-shadow: none;
+    cursor: default;
 }
