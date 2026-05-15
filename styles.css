@@ -788,7 +788,8 @@ textarea {
     border-radius: 6px 6px 0 0;     /* kun øverste hjørner runde */
 }
 
-#side20 .rejse-kort:hover {
+#side20 .rejse-kort:hover, 
+#side30 .rejse-kort:hover{
     transform: none;
     box-shadow: none;
     cursor: default;
