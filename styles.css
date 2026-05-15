@@ -123,6 +123,87 @@ body {
     margin: 12px auto;  /* centrer den */
 }
 
+#side12 .rejse-kort:hover {
+    transform: none;
+    box-shadow: none;
+    cursor: default;
+}
+
+/* Rammen om ét præstationskort */
+.praestations-kort-ny {
+    background: white;
+    border-radius: 16px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column; /* titel og knap stables lodret */
+    gap: 10px;
+}
+
+/* Rækken med de 3 cirkler — side om side */
+.tre-cirkler {
+    display: flex;        /* tænd for arrangøren */
+    justify-content: space-around; /* fordel jævnt */
+}
+
+/* Én cirkel-boks — indhold stables lodret */
+.cirkel-boks {
+    display: flex;
+    flex-direction: column;
+    align-items: center;  /* centrer vandret */
+    gap: 6px;
+    width: 80px;          /* samme bredde på alle 3 */
+    transition: transform 0.25s ease; /* blød animation */
+}
+.cirkel-boks:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+/* Selve det runde billede */
+.cirkel-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;   /* gør den rund */
+    object-fit: cover;
+}
+
+/* Den lille progress bar under cirklen */
+.lille-bar {
+    background: rgba(83,74,183,0.15);
+    border-radius: 20px;
+    height: 6px;
+    width: 100%;          /* følger cirkel-boks bredden */
+    overflow: hidden;
+}
+
+.lille-fill {
+    background: #534AB7;
+    height: 100%;
+    border-radius: 20px;
+}
+
+/* Teksten under baren */
+.cirkel-tekst {
+    font-size: 10px;
+    color: #888780;
+    margin: 0;
+    text-align: center;
+}
+
+/* Se samtaler knappen */
+.se-samtaler-knap {
+    background: #534AB7;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 10px;
+    width: 100%;
+    font-size: 13px;
+    cursor: default;      /* ingen hånd-cursor — knappen virker ikke endnu */
+}
+
+
+
 .notifikation {
     position: absolute;
     top: -80px;
@@ -273,7 +354,8 @@ body {
     transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
-.knap:hover {
+.knap:hover,
+.se-samtaler-knap:hover{
     transform: scale(1.04);
     box-shadow: 0 0 10px 6px rgba(83, 74, 183, 0.4),
     0 4px 16px rgba(0,0,0,0.10);
