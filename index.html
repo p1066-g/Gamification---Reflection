@@ -4,20 +4,21 @@
 	  <head> <!-- Alt herinde er usynligt for brugeren — opsætning og regler -->
 		  <meta charset="UTF-8"> <!-- Tillader æ ø å og andre specialtegn -->
 		  <meta name="viewport" content="width=device-width, initial-scale=1" />
-		  <title>Reflection Journey</title> <!-- Det der vises i browserens fane øverst -->
+		  <title>Reflektionsrejser</title> <!-- Det der vises i browserens fane øverst -->
 		  <link rel="stylesheet" href="styles.css"> <!-- Henter CSS fra ekstern fil: styles.css -->
 	  </head> <!-- head-sektionen slutter her -->
 
 		<body> <!-- Alt herinde vises på siderne -->
 
-	        <!-- Musikken starter lydløs -->
-	    <audio id="baggrunds-musik" loop muted>
-	    <source src="music.mp3" type="audio/mpeg">
+		<!-- Musikken starter lydløs -->
+			<!-- første lydklip -->
+			<audio id="baggrunds-musik" loop muted>
+			<source src="music.mp3" type="audio/mpeg">
 	    </audio>
-
-		<audio id="lydeffekt" loop muted>
+			<!-- andet lydklip -->
+			<audio id="lydeffekt" loop muted>
 			<source src="fx.mp3" type="audio/mpeg">
-		</audio>
+			</audio>
 		<!-- ========== SIDE 1: overblik ========== -->
 		<div class="telefon">
 
@@ -26,8 +27,8 @@
 	      <div id="disclaimer-kort">        <!-- kortet starter -->
 				<img src="athena.webp" class="disclaimer-athena" alt="Athena">
 	          <h2>Vi hjælper dig!</h2>
-	          <p>Forskningen viser at det er svært at holde motivationen
-				over længere periode - selv med mål man selv har sat for sig.
+	          <p>Undersøgelser viser at det er svært at holde motivationen
+				over længere perioder - selv med mål man selv har sat for sig.
 				Vi vil derfor hjælpe dig med at nå dine mål:</p>
 	          <p><strong>Notifikationer</strong></p>
 	          <div class="disclaimer-boks"> <!-- boks 1 -->
@@ -37,7 +38,7 @@
 	          <p><strong>Streaks / badges / xp</strong></p>
 	          <div class="disclaimer-boks"> <!-- boks 2 -->
 	            <span class=glowing>🔥</span> 2/7 dage &nbsp;
-				<img src="sartre.webp" class="disclaimer-badge" style="width:24px; height:24px;">
+				<img src="sartre.webp" class="disclaimer-badge" style="width:24px; height:24px;" alt="Sartre">
 				<span class=glowing>⚡</span> 50 xp &nbsp;
 	          </div>                         <!-- boks 2 slutter -->
 
@@ -57,7 +58,7 @@
 			<div class="notifikation" id="notifikation">
 				<span class="notif-ikon">🔔</span>
 				<div>
-					<p style="font-weight: bold;">Reflection Journey</p>
+					<p style="font-weight: bold;">Reflektionsrejse</p>
 					<p>Husk at reflektere i dag — din streak er i fare</p>
 				</div>
 			</div>
@@ -67,13 +68,13 @@
 
 				<!-- Mørk top-sektion -->
 				<div class="top-del">
-					<p class="top-del-titel" style="padding: 10px">Reflection Journeys</p>
+					<p class="top-del-titel" style="padding: 10px">Reflektionsrejser</p>
 				</div>
 
 				<!-- Lys bund-sektion -->
 				<div class="bund-del">
 					<!-- ===== PRÆSTATIONSOVERSIGT ===== -->
-					<div class="praestations-kort"onclick="skiftTilSide(12)">
+					<div class="praestations-kort" onclick="skiftTilSide(12)">
 						<p class="praestations-titel">Præstationsoversigt</p>
 						<div class="praestations-række">
 							<!-- Streak -->
@@ -133,10 +134,10 @@
 
     					<div class="top-del" style="justify-content: center;">
         					<button onclick="skiftTilSide(1)" 
-                			style="position: absolute; top: 10px; left: 10px;
+                			style="padding: 17px; position: absolute; top: 10px; left: 10px;
                        		background: none; border: none; color: white;
                        		font-size: 20px; cursor: pointer;">←</button>
-        					<p class="top-del-titel">Din fremgang</p>
+        					<p class="top-del-titel" style="padding: 10px">Din fremgang</p>
     						</div>
     				<div class="bund-del">
 						<div class="rejse-kort">
@@ -144,7 +145,7 @@
 
         					<!-- Cirkel 1: Rejsen -->
         					<div class="cirkel-boks">
-            					<img src="image(1).webp" class="cirkel-img">
+            					<img src="image(1).webp" class="cirkel-img" alt="Find din karrierevej">
            						<div class="lille-bar">
                 				<div class="lille-fill" style="width: 43%"></div>
             					</div>
@@ -175,7 +176,7 @@
 					<div class="rejse-kort">
   						<img src="image(2).webp" alt="Teknologi">
     					<div class="progress-bar">
-        				<div class="progress-fill" style="width: 0%"></div>
+        				<div class="progress-fill" style="width: 0"></div>
         				<span>0/7 dage fuldført</span>
     				</div>
     					<p class="kort-titel">Teknologi</p>
@@ -190,12 +191,12 @@
 					<div class="side2" id="side20">
 
     					<!-- topdel -->
-    				<div class="top-del" style="position: relative;">
+    				<div class="top-del" style="position: relative">
     				<button onclick="skiftTilSide(1)" 
-            		style="position: absolute; top: 10px; left: 10px;
+            		style="padding: 5px; position: absolute; top: 10px; left: 10px;
                    background: none; border: none; color: white;
                    font-size: 20px; cursor: pointer;">←</button>
-    					<p class="top-del-titel">Din rejse</p>
+    					<p class="top-del-titel" style="padding: 10px">Din rejse</p>
 					</div>
 					
 
@@ -217,8 +218,8 @@
                 		<div class="filosof-header">
                     	<img src="sartre.webp" alt="Jean-Paul Sartre" class="filosof-img">
                     	<div class="filosof-info">
-                        	<p style="color: #AFA9EC;">Existentialist Voice of Liberation</p>
-                        	<p style="color: #AFA9EC;">(1905-1980) · French</p>
+                        	<p style="color: #AFA9EC;">Eksistentialisme</p>
+                        	<p style="color: #AFA9EC;">(1905-1980) · Fransk filosof</p>
                     	</div>
                 	</div>
             		</div>
@@ -238,12 +239,12 @@
 			<div class="side2" id="side30">
 
     			<!-- topdel -->
-    			<div class="top-del" style="position: relative;">
+    			<div class="top-del" style="position: relative">
         		<button onclick="skiftTilSide(1)"
-                style="position: absolute; top: 10px; left: 10px;
+                style="padding: 5px; position: absolute; top: 10px; left: 10px;
                        background: none; border: none; color: white;
                        font-size: 20px; cursor: pointer;">←</button>
-        			<p class="top-del-titel">Din rejse</p>
+        			<p class="top-del-titel" style="padding: 10px">Din rejse</p>
     			</div>
 
     			<!-- bunddel -->
@@ -263,8 +264,8 @@
                 	<div class="filosof-header">
                     	<img src="heidegger.webp" alt="Martin Heidegger" class="filosof-img">
                     	<div class="filosof-info">
-                        	<p style="color: #AFA9EC;">The Seeker of Being</p>
-                        	<p style="color: #AFA9EC;">(1889-1976) · Tyskland</p>
+                        	<p style="color: #AFA9EC;">"The Seeker of Being"</p>
+                        	<p style="color: #AFA9EC;">(1889-1976) · Tysk filosof</p>
                     	</div>
                 	</div>
             	</div>
@@ -516,40 +517,62 @@
 	  </div>
 
 	  <!-- side 5 - Afslutning -->
-	<div class="side2" id="side5">
-	  <div class="top-del" style="justify-content: center; gap: 14px;">
-	    <p class="top-del-titel">Godt gået!</p>
-	    <img id="side5-filosof" src=""
-	         style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover;" alt="Billed af filosof">
-	  </div>
+			<div class="side2" id="side5">
+				<div class="top-del" style="justify-content: center; gap: 12px;">
+					<p class="top-del-titel">Godt gået!</p>
+					<div class="avatar-ring">
+						<svg width="100" height="100" viewBox="0 0 100 100">
+							<circle cx="50" cy="50" r="46" fill="none" stroke="rgba(175,169,236,0.2)" stroke-width="4"/>
+							<circle id="side5-ring"
+							        cx="50" cy="50" r="46" fill="none"
+							        stroke="#AFA9EC" stroke-width="4"
+							        stroke-dasharray="289" stroke-dashoffset="289"
+							        stroke-linecap="round"
+							        style="transform:rotate(-90deg);transform-origin:50% 50%;transition:stroke-dashoffset 1.2s cubic-bezier(.4,0,.2,1)"/>
+						</svg>
+						<img id="side5-rejse" src="" alt="Billed af rejse">
+					</div>
+				</div>
 
-	  <div class="bund-del">
-		  <div class="card" style=" align-items: center; gap: 12px; border-left: none; border-radius: 12px; background: white; padding: 12px 16px;">
+				<div class="bund-del">
+					<!-- Streak + Filosof -->
+					<div class="stat-row">
+						<div class="stat-tile" id="side5-streak-tile">
+							<p class="stat-label">Streak</p>
+							<div class="streak-count">
+								<span class="flame-icon">🔥</span>
+								<span class="streak-number" id="streak-nummer">0</span>
+							</div>
+							<p class="stat-sub" id="streak-tekst">0 dage i træk</p>
+						</div>
+						<div class="stat-tile" id="side5-filosof-tile">
+							<p class="stat-label">Dagens tænker</p>
+							<img id="side5-filosof-lille" src="" alt="Tænker"
+							     style="width:40px;height:40px;border-radius:50%;object-fit:cover;">
+							<p class="stat-sub" id="side5-filosof-navn"></p>
+						</div>
+					</div>
 
-			  <div class="progress-bar">
-				  <div id="side5-bar" class="progress-fill" style="width: 0"></div>
-				  <span id="side5-dage">0/7 dage fuldført</span>
-			  </div>
+					<!-- Fremgang -->
+					<div class="progress-card" id="side5-progress-card">
+						<div class="prog-header">
+							<p class="prog-title" id="journey-title"></p>
+							<p class="prog-days" id="side5-dage">0/7 dage</p>
+						</div>
+						<div class="prog-track">
+							<div class="prog-fill" id="side5-bar"></div>
+						</div>
+					</div>
 
-			  <p class="kort-titel" id="journey-title" style="align-self: center"></p>
+					<!-- Dit svar -->
+					<div id="side5-svar" class="card">
+						<p class="q">Dit svar</p>
+						<p id="vis-svar" class="a"></p>
+					</div>
 
-		  </div>
-	    <div id="side5-svar" class="card">
-	      <p class="q">Dit svar</p>
-	      <p id="vis-svar" class="a"></p>
-	    </div>
-		  <!-- streak kort -->
-		  <div class="card" id="side5-streak" style="display: flex; align-items: center; gap: 12px; border-left: none; border-radius: 12px; background: #1C1A3A; padding: 12px 16px;">
-			  <span style="font-size: 28px; line-height: 1;">🔥</span>
-			  <div>
-				  <p style="margin: 0; font-size: 11px; color: rgba(175,169,236,0.7); font-family: Georgia, serif;">NUVÆRENDE STREAK</p>
-				  <p id="streak-tekst" style="margin: 0; font-size: 18px; font-weight: bold; color: white;">4 dage i træk</p>
-			  </div>
-		  </div>
-	      <button class="knap" onclick="skiftTilSide(6)">Vis badges →</button>
-	</div>
-	</div>
-
+					<button class="knap" id="side5-knap" onclick="skiftTilSide(6)">Vis badges →</button>
+				</div>
+			</div>
 			<!-- side 6 - afslutning-->
 			<div class="side2" id="side6">
 				<div class="top-del" style="justify-content: center; gap: 14px;">
@@ -564,37 +587,37 @@
 
 							<div class="badge-item" data-name="Find din karrierevej">
 								<div class="locked-image badge-slot"><img src="image(1).webp" alt="Karrierevej"></div>
-								<div class="badge-progress-bar"><div class="badge-progress-fill" id="badge-karriere-fill" style="width: 0%"></div></div>
+								<div class="badge-progress-bar"><div class="badge-progress-fill" id="badge-karriere-fill" style="width: 0"></div></div>
 								<p class="badge-progress-tekst" id="badge-karriere-tekst">0/7 dage</p>
 							</div>
 
 							<div class="badge-item" data-name="Hvordan du bruger teknologi fornuftigt">
 								<div class="locked-image badge-slot"><img src="image(2).webp" alt="Teknologi"></div>
-								<div class="badge-progress-bar"><div class="badge-progress-fill" id="badge-teknologi-fill" style="width: 0%"></div></div>
+								<div class="badge-progress-bar"><div class="badge-progress-fill" id="badge-teknologi-fill" style="width: 0"></div></div>
 								<p class="badge-progress-tekst" id="badge-teknologi-tekst">0/7 dage</p>
 							</div>
 
 							<div class="badge-item">
 								<div class="badge-slot tom"></div>
-								<div class="badge-progress-bar"><div class="badge-progress-fill" style="width: 0%"></div></div>
+								<div class="badge-progress-bar"><div class="badge-progress-fill" style="width: 0"></div></div>
 								<p class="badge-progress-tekst">0/7 dage</p>
 							</div>
 
 							<div class="badge-item">
 								<div class="badge-slot tom"></div>
-								<div class="badge-progress-bar"><div class="badge-progress-fill" style="width: 0%"></div></div>
+								<div class="badge-progress-bar"><div class="badge-progress-fill" style="width: 0"></div></div>
 								<p class="badge-progress-tekst">0/7 dage</p>
 							</div>
 
 							<div class="badge-item">
 								<div class="badge-slot tom"></div>
-								<div class="badge-progress-bar"><div class="badge-progress-fill" style="width: 0%"></div></div>
+								<div class="badge-progress-bar"><div class="badge-progress-fill" style="width: 0"></div></div>
 								<p class="badge-progress-tekst">0/7 dage</p>
 							</div>
 
 							<div class="badge-item">
 								<div class="badge-slot tom"></div>
-								<div class="badge-progress-bar"><div class="badge-progress-fill" style="width: 0%"></div></div>
+								<div class="badge-progress-bar"><div class="badge-progress-fill" style="width: 0"></div></div>
 								<p class="badge-progress-tekst">0/7 dage</p>
 							</div>
 
@@ -608,13 +631,13 @@
 
 							<div class="badge-item" data-name="Aristoteles">
 								<div class="locked-image badge-slot"><img src="aristoteles.webp" alt="Aristoteles"></div>
-								<div class="badge-progress-bar"><div class="badge-progress-fill" style="width: 0%"></div></div>
+								<div class="badge-progress-bar"><div class="badge-progress-fill" style="width: 0"></div></div>
 								<p class="badge-progress-tekst">0/7 samtaler</p>
 							</div>
 
 							<div class="badge-item" data-name="Confucius">
 								<div class="locked-image badge-slot"><img src="confucius.webp" alt="Confucius"></div>
-								<div class="badge-progress-bar"><div class="badge-progress-fill" style="width: 0%"></div></div>
+								<div class="badge-progress-bar"><div class="badge-progress-fill" style="width: 0"></div></div>
 								<p class="badge-progress-tekst">0/7 samtaler</p>
 							</div>
 
@@ -626,25 +649,25 @@
 
 							<div class="badge-item" data-name="Heidegger">
 								<div class="locked-image badge-slot"><img src="heidegger.webp" alt="Heidegger"></div>
-								<div class="badge-progress-bar"><div class="badge-progress-fill" id="badge-heidegger-fill" style="width: 0%"></div></div>
+								<div class="badge-progress-bar"><div class="badge-progress-fill" id="badge-heidegger-fill" style="width: 0"></div></div>
 								<p class="badge-progress-tekst" id="badge-heidegger-tekst">0/7 samtaler</p>
 							</div>
 
 							<div class="badge-item" data-name="Kant">
 								<div class="locked-image badge-slot"><img src="kant.webp" alt="Kant"></div>
-								<div class="badge-progress-bar"><div class="badge-progress-fill" style="width: 0%"></div></div>
+								<div class="badge-progress-bar"><div class="badge-progress-fill" style="width: 0"></div></div>
 								<p class="badge-progress-tekst">0/7 samtaler</p>
 							</div>
 
 							<div class="badge-item" data-name="Sartre">
 								<div class="locked-image badge-slot"><img src="sartre.webp" alt="Sartre"></div>
-								<div class="badge-progress-bar"><div class="badge-progress-fill" id="badge-sartre-fill" style="width: 0%"></div></div>
+								<div class="badge-progress-bar"><div class="badge-progress-fill" id="badge-sartre-fill" style="width: 0"></div></div>
 								<p class="badge-progress-tekst" id="badge-sartre-tekst">0/7 samtaler</p>
 							</div>
 
 							<div class="badge-item" data-name="Platon">
 								<div class="locked-image badge-slot"><img src="platon.webp" alt="Platon"></div>
-								<div class="badge-progress-bar"><div class="badge-progress-fill" style="width: 0%"></div></div>
+								<div class="badge-progress-bar"><div class="badge-progress-fill" style="width: 0"></div></div>
 								<p class="badge-progress-tekst">0/7 samtaler</p>
 							</div>
 
@@ -656,7 +679,7 @@
 
 							<div class="badge-item" data-name="Kierkegaard">
 								<div class="locked-image badge-slot"><img src="kierkegaard.webp" alt="Kierkegaard"></div>
-								<div class="badge-progress-bar"><div class="badge-progress-fill" style="width: 0%"></div></div>
+								<div class="badge-progress-bar"><div class="badge-progress-fill" style="width: 0"></div></div>
 								<p class="badge-progress-tekst">0/7 samtaler</p>
 							</div>
 
@@ -672,8 +695,9 @@
 	  let heideggerSamtaler = 0;
 	  let karriereDage = 3;
 	  let teknologiDage = 0;
+    let streakDage = 3;
 	  let aktivFilosof = '';  // husker hvilken filosof
-	  let aktivDage = 0;      // husker antal dage
+	  let aktivDage = 3;      // husker antal dage
 	  let aktivRejse = '';
 
 	function skiftTilSide(nummer, filosof)                                               // Lav en funktion der hedder "skiftTilSide" "nummer" er det tal vi sender med — fx skiftTilSide(2) sender tallet 2
@@ -705,6 +729,7 @@
 	        startSartreChat(); // starter SartreChat funktionen når den går til side 22
 	        sartreSamtaler += 1;
 	        karriereDage += 1;
+        streakDage += 1;  //
 	        aktivRejse = 'Find din karrierevej';
 
 	    }
@@ -713,7 +738,8 @@
 	        startHeideggerChat(); // starter Heidegger funktionen når den går til side 32
 	        heideggerSamtaler += 1;
 	        teknologiDage += 1;
-	        aktivRejse = 'Hvordan du bruger teknologi fornuftigt';
+          streakDage += 1;
+          aktivRejse = 'Hvordan du bruger teknologi fornuftigt';
 
 	    }
 
@@ -733,26 +759,61 @@
 	        lydeffekt.play();         // start afspilning
 	    }
 
-	    if (nummer === 5) {
-	        document.getElementById('journey-title').textContent = aktivRejse;
+      if (nummer === 5) {
+          document.getElementById('journey-title').textContent = aktivRejse;
+          const dageTal = aktivFilosof === 'sartre' ? karriereDage : teknologiDage;
+          const pct = dageTal / 7;
+          document.getElementById('side5-dage').textContent = dageTal + '/7 dage';
+          const rejseBilled = aktivRejse === 'Find din karrierevej' ? 'image(1)' : 'image(2)';
+          document.getElementById('side5-rejse').src = rejseBilled + '.webp';
+          document.getElementById('side5-filosof-lille').src = aktivFilosof + '.webp';
+          document.getElementById('side5-filosof-navn').textContent =
+              aktivFilosof === 'sartre' ? 'Jean-Paul Sartre' : 'Martin Heidegger';
+
+          if (aktivFilosof === 'sartre') {
+              document.getElementById('vis-svar').textContent = document.getElementById('karriere-svar1').value;
+          } else {
+              document.getElementById('vis-svar').textContent = document.getElementById('teknologi-svar1').value;
+          }
+
+          document.getElementById('streak-tekst').textContent = streakDage + ' dage i træk';
+
+          // Reset animation state
+          document.getElementById('side5-streak-tile').classList.remove('show');
+          document.getElementById('side5-filosof-tile').classList.remove('show');
+          document.getElementById('side5-progress-card').classList.remove('show');
+          document.getElementById('side5-svar').classList.remove('show');
+          document.getElementById('side5-knap').classList.remove('show');
+          document.getElementById('side5-bar').style.width = '0';
+          document.getElementById('side5-ring').style.strokeDashoffset = '289';
+          document.getElementById('streak-nummer').classList.remove('show');
 
 
-	    document.getElementById('side5-bar').style.width = (aktivDage / 7 * 100) + '%';
-	    document.getElementById('side5-dage').textContent = aktivDage + '/7 dage fuldført';
+          // Staggered reveal
+          setTimeout(function() {
+              document.getElementById('side5-streak-tile').classList.add('show');
+              document.getElementById('side5-filosof-tile').classList.add('show');
 
-	    // sæt filosof-billede
-	    document.getElementById('side5-filosof').src = aktivFilosof + '.webp';
+              document.getElementById('streak-nummer').textContent = streakDage;
+              document.getElementById('streak-nummer').classList.add('show');
+          }, 300);
 
-	    // hent brugerens svar fra den rigtige tekstboks
-	    if (aktivFilosof === 'sartre') {
-	        document.getElementById('vis-svar').textContent = document.getElementById('karriere-svar1').value;
-	    } else {
-	        document.getElementById('vis-svar').textContent = document.getElementById('teknologi-svar1').value;
-	    }
-	    document.getElementById('streak-tekst').textContent = aktivDage + ' dage i træk';
+          setTimeout(function() {
+              document.getElementById('side5-progress-card').classList.add('show');
+              setTimeout(function() {
+                  document.getElementById('side5-bar').style.width = (pct * 100) + '%';
+                  document.getElementById('side5-ring').style.strokeDashoffset = (289 * (1 - pct)).toString();
+              }, 150);
+          }, 700);
 
-	    }
+          setTimeout(function() {
+              document.getElementById('side5-svar').classList.add('show');
+          }, 1000);
 
+          setTimeout(function() {
+              document.getElementById('side5-knap').classList.add('show');
+          }, 1300);
+      }
 	    if (nummer === 6) {
 	        // opdaterer fremskridt på de badges der er interagerbare
 	            document.getElementById('badge-sartre-fill').style.width = (sartreSamtaler / 7 * 100) + '%';
@@ -776,9 +837,7 @@
 	    billede.src = filosof + '.webp';  // fx 'sartre' + '.webp' = 'sartre.webp'
 
 	aktivFilosof = filosof;           // gem filosof
-        aktivDage = filosof === 'sartre' ? sartreSamtaler : heideggerSamtaler;
-
-
+        aktivDage = filosof === 'sartre' ? karriereDage : teknologiDage;
 	      const navn = filosof === 'sartre' ? 'Sartre' : 'Heidegger';
 	      const samtalerTal = filosof === 'sartre' ? sartreSamtaler : heideggerSamtaler;
 	      const samtalerMangler = 7 - samtalerTal;
